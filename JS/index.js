@@ -4,7 +4,7 @@ let typPrihlaseni = "player";
 function createForm(){
     var form = document.createElement("form");
     form.setAttribute("method", "post");
-    form.setAttribute("action", "submit");
+    form.setAttribute("action", "./home.html");
     form.setAttribute("id", "formular");
 
     var name = document.createElement("input");
