@@ -2,14 +2,19 @@ let typFormulare = "p";
 let typPrihlaseni = "player";
 
 function createForm(){
-    var formular = document.getElementById.form;
-    var name = document.createElement(input);
+    var form = document.createElement("form")
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "submit");
+    var name = document.createElement("input");
     name.setAttribute("type", "text");
     name.setAttribute("name", "username");
-    var password = document.createElement(input);
+    name.setAttribute("placeholder", "Jméno");
+    var password = document.createElement("input");
     password.setAttribute("type", "password");
-    password.setAtribute("name", "password");
+    password.setAttribute("name", "password");
+    password.setAttribute("placeholder", "Heslo");
     
-    formular.appendChild(name);
-    formular.appendChild(password);
+    form.appendChild(name);
+    form.appendChild(password);
+    document.getElementById("form_div").appendChild(form);
 }
