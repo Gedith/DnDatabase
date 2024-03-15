@@ -34,6 +34,7 @@ function createForm(){
 }
 
 function changeToRegistration() {
+    document.getElementById("radios").style.display = "none";
     document.getElementById("form_title").textContent = "Registrace";
     document.getElementById("submit").remove();
     var pass2 = document.createElement("input");
@@ -61,6 +62,7 @@ function changeToRegistration() {
 }
 
 function changeToLogin() {
+    document.getElementById("radios").style.display = "initial";
     document.getElementById("form_title").textContent = "Přihlášení";
     document.getElementById("pass2").remove();
     document.getElementById("pass2_BR").remove();
