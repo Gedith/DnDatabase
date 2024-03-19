@@ -4,7 +4,7 @@ let typPrihlaseni = "player";
 function createForm(){
     var form = document.createElement("form");
     form.setAttribute("method", "post");
-    form.setAttribute("action", "./PHP/registrationHandler.php");
+    form.setAttribute("action", "./PHP/loginHandler.php");
     form.setAttribute("id", "formular");
 
     var name = document.createElement("input");
@@ -37,6 +37,7 @@ function createForm(){
 }
 
 function changeToRegistration() {
+    document.getElementById("formular").setAttribute("action", "./PHP/registrationHandler.php");
     document.getElementById("radios").style.display = "none";
     document.getElementById("form_title").textContent = "Registrace";
     document.getElementById("submit").remove();
@@ -66,6 +67,7 @@ function changeToRegistration() {
 }
 
 function changeToLogin() {
+    document.getElementById("formular").setAttribute("action", "./PHP/loginHandler.php");
     document.getElementById("radios").style.display = "initial";
     document.getElementById("form_title").textContent = "Přihlášení";
     document.getElementById("pass2").remove();

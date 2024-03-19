@@ -8,6 +8,7 @@
 <body>
     <header></header>
     <nav>
+        <h1>Domovská Stránka</h1>
         <a href="User.html">Profil</a>
     </nav>
     <main></main>

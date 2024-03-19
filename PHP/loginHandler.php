@@ -1,0 +1,31 @@
+<?php
+    include_once './connect.php';
+    mb_internal_encoding("UTF-8");
+    session_start();
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $username = $_POST["username"];
+        $password = hash('sha256', $_POST["password"]);
+    }
+
+    //Database check
+    $select = mysqli_query($conn, "SELECT Jmeno FROM uzivatele WHERE Jmeno = '".$username."'");
+    if (mysqli_num_rows($select) == 0) {
+        badData("Takového uživatele jsem nenašel");
+    }else{
+        $passCheck = mysqli_query($conn, "SELECT * FROM uzivatele where Jmeno = '".$username."' AND Heslo = '".$password."'");
+        if (mysqli_num_rows($passCheck) == 0) {
+            badData("Špatné heslo");
+        }else{
+            $_SESSION["logedUser"] = $username;
+            header("Location:../home.php");
+            exit(); 
+        }
+    }
+
+    function badData($message){
+        $_SESSION["message"] = $message;
+        header("Location:../index.php");
+        exit();
+    }
+?>
