@@ -7,6 +7,26 @@ function createForm(){
     form.setAttribute("action", "./PHP/loginHandler.php");
     form.setAttribute("id", "formular");
 
+    var radioPJ = document.createElement("input");
+    radioPJ.setAttribute("id", "radioPJ");
+    radioPJ.setAttribute("type", "radio");
+    radioPJ.setAttribute("value", "PJ");
+    radioPJ.setAttribute("name", "typUzivatele");
+    radioPJ.textContent = "Pán jeskyně";
+
+    var labelPJ = document.createElement("label");
+    labelPJ.textContent = "Pán jeskyně";
+
+    var labelPlayer = document.createElement("label");
+    labelPlayer.textContent = "Hráč";
+
+    var radioPlayer = document.createElement("input");
+    radioPlayer.setAttribute("id", "radioPlayer");
+    radioPlayer.setAttribute("type", "radio");
+    radioPlayer.setAttribute("value", "Player");
+    radioPlayer.setAttribute("name", "typUzivatele");
+    radioPlayer.textContent = "Hráč";
+
     var name = document.createElement("input");
     name.setAttribute("type", "text");
     name.setAttribute("name", "username");
@@ -27,7 +47,13 @@ function createForm(){
 
     var br = document.createElement("BR");
     var br2 = document.createElement("BR");
-    
+    var br3 = document.createElement("BR");
+
+    form.appendChild(radioPJ);
+    form.appendChild(labelPJ);
+    form.appendChild(radioPlayer);
+    form.appendChild(labelPlayer);
+    form.appendChild(br3);
     form.appendChild(name);
     form.appendChild(br);
     form.appendChild(password);
@@ -37,10 +63,15 @@ function createForm(){
 }
 
 function changeToRegistration() {
+    let labels = document.getElementsByTagName("label");
+    labels[0].style.display = "none";
+    labels[1].style.display = "none";
     document.getElementById("formular").setAttribute("action", "./PHP/registrationHandler.php");
-    document.getElementById("radios").style.display = "none";
+    document.getElementById("radioPJ").style.display = "none";
+    document.getElementById("radioPlayer").style.display = "none";
     document.getElementById("form_title").textContent = "Registrace";
     document.getElementById("submit").remove();
+
     var pass2 = document.createElement("input");
     pass2.setAttribute("type", "password");
     pass2.setAttribute("name", "password2");
@@ -67,8 +98,12 @@ function changeToRegistration() {
 }
 
 function changeToLogin() {
+    document.getElementById("radioPJ").style.display = "initial";
+    document.getElementById("radioPlayer").style.display = "initial";
+    let labels = document.getElementsByTagName("label");
+    labels[0].style.display = "initial";
+    labels[1].style.display = "initial";
     document.getElementById("formular").setAttribute("action", "./PHP/loginHandler.php");
-    document.getElementById("radios").style.display = "initial";
     document.getElementById("form_title").textContent = "Přihlášení";
     document.getElementById("pass2").remove();
     document.getElementById("pass2_BR").remove();
@@ -94,7 +129,7 @@ function submitFunction() {
             alert("Heslo nesplňuje základní požadavky na heslo");
             return false;*/
 
-        }   else if (pass != pass2) {
+        } else if (pass != pass2) {
             alert("Hesla se neshodují");
             return false;
         }

@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +13,7 @@
     <nav>
         <h1>Domovská Stránka</h1>
         <a href="User.html">Profil</a>
+        <a href="./PHP/logout.php">Odhlásit se</a>
     </nav>
     <main></main>
     <footer></footer>

@@ -19,10 +19,6 @@
     ?>
     <div id="form_div">
         <h3 id="form_title">Přihlášení</h3>
-        <div id="radios">
-            <input type="radio" value="PJ" name="typUzivatele"><label>Pán jeskyně</label>
-            <input type="radio" value="Player" name="typUzivatele"><label>Hráč</label>
-        </div>
     </div>
     <button id="form_button" onclick="changeToRegistration()">Registrace</button>
 </body>
