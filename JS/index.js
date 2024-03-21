@@ -12,7 +12,7 @@ function createForm(){
     radioPJ.setAttribute("type", "radio");
     radioPJ.setAttribute("value", "PJ");
     radioPJ.setAttribute("name", "typUzivatele");
-    radioPJ.textContent = "Pán jeskyně";
+    radioPJ.setAttribute("checked", "checked");
 
     var labelPJ = document.createElement("label");
     labelPJ.textContent = "Pán jeskyně";
@@ -25,7 +25,6 @@ function createForm(){
     radioPlayer.setAttribute("type", "radio");
     radioPlayer.setAttribute("value", "Player");
     radioPlayer.setAttribute("name", "typUzivatele");
-    radioPlayer.textContent = "Hráč";
 
     var name = document.createElement("input");
     name.setAttribute("type", "text");

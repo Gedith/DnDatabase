@@ -11,9 +11,13 @@
 <body>
     <header></header>
     <nav>
-        <h1>Domovská Stránka</h1>
         <a href="User.html">Profil</a>
-        <a href="./PHP/logout.php">Odhlásit se</a>
+        <a href="./PHP/logout.php">Odhlásit se</a><br />
+        <a href="./createCampaign.php">Vytvořit kampaň</a>
+        <?php
+        echo "<h1>Domovská Stránka - ".$_SESSION["typeOfUser"]."</h1>";
+        
+        ?>
     </nav>
     <main></main>
     <footer></footer>
