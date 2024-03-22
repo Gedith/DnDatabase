@@ -21,6 +21,9 @@
             if($type == null){
                 badData("Please select as who you want to login");
             }else{
+            $userData = mysqli_query($conn, "SELECT UzivateleID From uzivatele where Jmeno = '" . $username . "'");
+                $userID = mysqli_fetch_assoc($userData);
+                $_SESSION["logedUserID"] = $userID["UzivateleID"];
                 $_SESSION["logedUser"] = $username;
                 $_SESSION["typeOfUser"] = $type;
                 header("Location:../home.php");
