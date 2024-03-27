@@ -12,7 +12,7 @@
 <body>
     <header></header>
     <nav>
-        <a href="User.html">Profil</a>
+        <a href="User.php">Profil</a>
         <a href="./PHP/logout.php">Odhlásit se</a><br />
         <?php
             if($_SESSION["typeOfUser"] == "PJ"){
