@@ -11,7 +11,7 @@
         badData("Username not found");
     }else{
         mysqli_query($conn, "UPDATE uzivatele SET Jmeno = '$noveJmeno' WHERE Jmeno = '$jmeno'");
-        $_SESSION["message"] = "Změna proběhla úspěšně.";
+        $_SESSION["message"] = "Change was successful!.";
         header("Location:../User.php");
         exit();
     }

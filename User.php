@@ -25,7 +25,7 @@
             cursor: pointer;
             position: fixed;
         }
-        .loginPopup {
+        .popup {
             position: relative;
             text-align: center;
             width: 100%;
@@ -85,10 +85,11 @@
                 echo "<p>".$_SESSION['message']."</p>";
                 $_SESSION["message"] = null;
             }
-            echo "Jméno:" . $_SESSION["logedUser"] . " <button onclick='openForm()'>Změnit</button>"
+            echo "Jméno:" . $_SESSION["logedUser"] . " <button onclick='openForm()'>Změnit</button><br>";
+            echo "<button onclick='openPassForm()'>Změnit heslo</button>";
         ?>
-        <div class="loginPopup">
-        <div class="formPopup" id="popupForm">
+        <div class="popup">
+        <div class="formPopup" id="namePopupForm">
             <form action="changeName.php" method="POST" class="formContainer">
                 <h2>Změňtě jméno.</h2>
                 <label for="jmeno">
@@ -104,12 +105,39 @@
             </form>
         </div>
         </div>
+        <div class="popup">
+        <div class="formPopup" id="passPopupForm">
+            <form action="changePass.php" method="POST" class="formContainer">
+                <h2>Změna hesla.</h2>
+                <label for="heslo">
+                    <strong>Heslo</strong>
+                </label>
+                <input type="password" id="heslo" placeholder="Heslo" name="heslo" required>
+                <label for="nHeslo">
+                    <strong>Nové heslo</strong>
+                </label>
+                <input type="password" id="nHeslo" placeholder="Nové heslo" name="noveHeslo" required>
+                <label for="nHesloZnovu">
+                    <strong>Nové heslo znovu</strong>
+                </label>
+                <input type="password" id="nHesloZnovu" placeholder="Nové heslo znovu" name="noveHesloZnovu" required>
+                <button type="submit" class="btn">Změnit</button>
+                <button type="button" class="btn cancel" onclick="closePassForm()">Zavřít</button>
+            </form>
+        </div>
+        </div>
         <script>
         function openForm() {
-            document.getElementById("popupForm").style.display = "block";
+            document.getElementById("namePopupForm").style.display = "block";
         }
         function closeForm() {
-            document.getElementById("popupForm").style.display = "none";
+            document.getElementById("namePopupForm").style.display = "none";
+        }
+        function openPassForm() {
+            document.getElementById("passPopupForm").style.display = "block";
+        }
+        function closePassForm() {
+            document.getElementById("passPopupForm").style.display = "none";
         }
         </script>
     </main>
