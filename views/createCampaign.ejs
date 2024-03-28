@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    
+    <h1>Vytvoř si novou kampaň</h1>
+
+    <form action="/campaign/create" method="POST">
+        <label for="name">Název kampaně</label>
+        <input type="text" id="name" name="name">
+        <button>Odeslat</button>
+    </form>
+
+</body>
+</html>
