@@ -60,15 +60,17 @@ app.get('/logout', (req, res) => {
 })
 
 app.post('/', (req,res) => {
-    let name = Object.values(req.body)[0]
-    let pass = Object.values(req.body)[1]
+    let type = Object.values(req.body)[0]
+    let name = Object.values(req.body)[1]
+    let pass = Object.values(req.body)[2]
     sql.query("SELECT Jmeno, Heslo FROM `uzivatele` WHERE Jmeno = '"+name+"'", (err, sqlResult) => {
         if(err) throw err
         if(sqlResult.length > 0){
             bcrypt.compare(pass, sqlResult[0].Heslo, (err, compare) => {
                 if(compare == true){
                     req.session.userName = name
-                    res.render('home', { userName: req.session.userName })
+                    req.session.typeOfUser = type
+                    res.render('home', { userName: req.session.userName, typeOfUser: req.session.typeOfUser })
                 } else {
                     console.log('Wrong password')
                     res.render('login')

@@ -5,6 +5,10 @@
     <h1>Přihlašování</h1>
 
     <form action="/" method="POST">
+        <input type="radio" name="typeOfUser" id="PJ" checked="checked" value="PJ">
+        <label for="PJ">Pán jeskyně</label>
+        <input type="radio" name="typeOfUser" id="Player" value="Player">
+        <label for="Player">Hráč</label>
         <label for="name">Jméno</label>
         <input type="text" id="name" name="name" required>
         <label for="pass">Heslo</label>
