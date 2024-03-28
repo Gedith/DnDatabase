@@ -54,6 +54,11 @@ app.get('/home', (req, res) => {
     res.render('home')
 })
 
+app.get('/logout', (req, res) => {
+    req.session.destroy()
+    res.render('login')
+})
+
 app.post('/', (req,res) => {
     let name = Object.values(req.body)[0]
     let pass = Object.values(req.body)[1]
