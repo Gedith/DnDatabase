@@ -14,11 +14,10 @@ const campaignDetails = (req, res) => {
     const kampane = req.session.kampane
     for (let i = 0; i < kampane.length; i++) {
         if(kampane[i].ID == id){
-            console.log(kampane[i])
             var spravnaKampan = kampane[i]
         }
     }
-    res.render('campaignDetails', { kampan: spravnaKampan})
+    res.render('campaignDetails', { kampan: spravnaKampan })
 }
 
 module.exports = {

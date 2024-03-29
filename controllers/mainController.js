@@ -23,18 +23,36 @@ const registrationCreateUser = (req,res) => {
 }
 
 const homePage = (req, res) => {
-    let kampane = []
-    sql.query("SELECT KampaneID, Nazev FROM kampane WHERE kampane.UzivateleID = "+req.session.userID, (err, sqlResult) => {
-        if(err) throw err
-        sqlResult.forEach((data) => {
-            kampane.push({
-                ID: data.KampaneID,
-                Nazev: data.Nazev
+    var typeOfUser =  req.session.typeOfUser
+    var userID = req.session.userID
+    if(typeOfUser == 'PJ'){
+        let kampane = []
+        sql.query("SELECT KampaneID, Nazev FROM kampane WHERE kampane.UzivateleID = "+userID, (err, sqlResult) => {
+            if(err) throw err
+            sqlResult.forEach((data) => {
+                kampane.push({
+                    ID: data.KampaneID,
+                    Nazev: data.Nazev
+                })
             })
+            req.session.kampane = kampane
+            res.render('home', { userName: req.session.userName, kampane: kampane, typeOfUser, characters: null})
         })
-        req.session.kampane = kampane
-        res.render('home', { userName: req.session.userName, typeOfUser: req.session.typeOfUser, kampane: kampane})
-    })
+    } else if(typeOfUser == 'Player'){
+        let characters = []
+        sql.query("SELECT * FROM `hracskepostavy` WHERE Hracskepostavy.UzivateleID = "+userID, (err, sqlResult) => {
+            if(err) throw err
+            sqlResult.forEach((character) => {
+                characters.push({
+                    ID: character.HracskepostavyID,
+                    name: character.Jmeno,
+                    level: character.Uroven
+                })
+            })
+            req.session.characters = characters
+            res.render('home', { userName: req.session.userName, characters, typeOfUser, kampane: null })
+        })
+    }
 }
 
 const logout = (req, res) => {

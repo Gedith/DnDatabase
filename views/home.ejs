@@ -5,16 +5,25 @@
     <h1>Home page - <%= typeOfUser %></h1>
     
     <nav>
+        <% if(typeOfUser == 'PJ'){ %>
         <a href="/campaign/create">Vytvořit kampaň</a>
+        <% } else if(typeOfUser == 'Player'){ %>
+            <a href="/character/create">Vytvořit postavu</a>
+        <% } %>
         <a href="/logout">Odhlásit se</a>
     </nav>
 
     <hr>
     <h2>Hello, <%= userName %></h2>
-
-    <% for(var i = 0; i<kampane.length;i++){ %>
-        <a href="/campaign/details/<%= kampane[i].ID %>"><h3><%= kampane[i].Nazev %></h3></a>
+        <% if(kampane){ %>
+            <% for(var i = 0; i<kampane.length;i++){ %>
+                <a href="/campaign/details/<%= kampane[i].ID %>"><h3><%= kampane[i].Nazev %></h3></a>
+            <% } %>     
         <% } %>
-
+        <% if(characters){ %>
+            <% for(var i = 0; i<characters.length;i++){ %>
+                <a href="/character/details/<%= characters[i].ID %>"><%= characters[i].name %> - lvl: <%= characters[i].level %></a>
+            <% } %>
+        <% } %>
 </body>
 </html>
