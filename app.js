@@ -2,7 +2,8 @@ const express = require('express')
 const app = express()
 const session = require('express-session')
 const mainRouters = require('./routes/mainRoutes')
-const campaignController = require('./routes/campaignRoutes')
+const campaignRouters = require('./routes/campaignRoutes')
+const { render } = require('ejs')
 
 app.listen(3000)
 
@@ -16,4 +17,7 @@ app.use(session({
 }))
 
 app.use(mainRouters)
-app.use(campaignController)
+app.use(campaignRouters)
+app.use((req, res) => {
+    res.status(404).render('404')
+})

@@ -32,6 +32,7 @@ const homePage = (req, res) => {
                 Nazev: data.Nazev
             })
         })
+        req.session.kampane = kampane
         res.render('home', { userName: req.session.userName, typeOfUser: req.session.typeOfUser, kampane: kampane})
     })
 }

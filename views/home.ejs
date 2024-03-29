@@ -13,7 +13,7 @@
     <h2>Hello, <%= userName %></h2>
 
     <% for(var i = 0; i<kampane.length;i++){ %>
-        <a href=""><h3><%= kampane[i].Nazev %></h3></a>
+        <a href="/campaign/details/<%= kampane[i].ID %>"><h3><%= kampane[i].Nazev %></h3></a>
         <% } %>
 
 </body>
