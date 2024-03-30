@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    <h1>Edit character - <%= character.name %></h1>
+    <a href="/home">Domů</a>
+
+    <form action="/character/edit/<%= character.ID %>" method="post">
+        <label for="name">Jméno</label>
+        <input type="text" id="name" name="name" value="<%= character.name %>">
+        <label for="class">Třída</label>
+        <input type="text" id="class" name="class" value="<%= character.class %>">
+        <label for="race">Rasa</label>
+        <input type="text" id="race" name="race" value="<%= character.race %>">
+        <label for="level">Úroveň</label>
+        <input type="number" name="level" min="0" max="100" value="<%= character.level %>">
+        <button>Uložit</button>
+    </form>
+    
+</body>
+</html>

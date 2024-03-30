@@ -1,4 +1,4 @@
-getCharacterData =  (id) => {
+const getCharacterData =  (id) => {
     return new Promise( (resolve, reject) => {
         sql.query("SELECT * FROM hracskepostavy WHERE hracskepostavy.HracskepostavyID = "+id, (err, sqlResult) => {
             if(err) throw err 
@@ -15,6 +15,13 @@ getCharacterData =  (id) => {
  
 }
 
+const editCharacter = (characterID, characterName, characterClass, characterRace, characterLevel) => {
+    sql.query("UPDATE `hracskepostavy` SET `Jmeno`='"+characterName+"',`Povolani`='"+characterClass+"',`Rasa`='"+characterRace+"',`Uroven`='"+characterLevel+"' WHERE HracskepostavyID = "+characterID, (err, sqlResult) =>{
+        if(err) throw err
+    })
+}
+
 module.exports = {
-    getCharacterData
+    getCharacterData,
+    editCharacter
 }

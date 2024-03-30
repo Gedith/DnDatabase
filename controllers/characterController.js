@@ -21,9 +21,23 @@ const characterDetails = async (req, res) => {
     })
 }
 
+const indexCharacterEdit = (req, res) => {
+    const characterID = req.params.id
+    characterModule.getCharacterData(characterID)
+    .then((character) => {
+        res.render('editCharacter', { character })
+    })
+}
+
+const editCharacter = (req, res) => {
+    characterModule.editCharacter(req.params.id, req.body.name, req.body.class, req.body.race, req.body.level)
+    res.redirect('/character/details/'+req.params.id)
+}
 
 module.exports = {
     indexCreateCharacter,
     createCharacter,
-    characterDetails
+    characterDetails,
+    indexCharacterEdit,
+    editCharacter
 }

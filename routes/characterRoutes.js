@@ -8,4 +8,8 @@ router.post('/character/create', characterController.createCharacter)
 
 router.get('/character/details/:id', characterController.characterDetails)
 
+router.get('/character/edit/:id', characterController.indexCharacterEdit)
+
+router.post('/character/edit/:id', characterController.editCharacter)
+
 module.exports = router
