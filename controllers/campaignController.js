@@ -1,13 +1,11 @@
-const campaignModule = require('../module/campaignModule')
+const campaignModule = require('../modules/campaignModule')
 
 const indexCreateCampaign = (req, res) => {
     res.render('createCampaign')
 }
 
 const createCampaign = (req, res) => {
-    sql.query("INSERT INTO `kampane`(`Nazev`, `UzivateleID`) VALUES ('"+req.body.name+"','"+req.session.userID+"')", (err, sqlResult) => {
-        if(err) throw err
-    })
+    campaignModule.createCampaign(req.body.name, req.session.userID)
     res.redirect('/home')
 }
 

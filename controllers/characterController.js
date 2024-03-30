@@ -1,13 +1,11 @@
-const characterModule = require('../module/characterModule')
+const characterModule = require('../modules/characterModule')
 
 const indexCreateCharacter = (req, res) => {
     res.render('createCharacter')
 }
 
 const createCharacter = (req, res) => {
-    sql.query("INSERT INTO `hracskepostavy`(`Jmeno`, `Povolani`, `Rasa`, `Uroven`, `UzivateleID`) VALUES ('"+req.body.name+"','"+req.body.class+"','"+req.body.race+"',0,"+req.session.userID+")", (err, sqlResult) => {
-        if(err) throw err
-    })
+    characterModule.createCharacter(req.body.name, req.body.class, req.body.race, req.session.userID)
     res.redirect('/home')
 }
 

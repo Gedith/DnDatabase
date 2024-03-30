@@ -35,8 +35,15 @@ const addPlayerToCampaign = (characterName, campaignID) => {
   })
 }
 
+const createCampaign = (campaignName, userID) => {
+  sql.query("INSERT INTO `kampane`(`Nazev`, `UzivateleID`) VALUES ('"+campaignName+"','"+userID+"')", (err, sqlResult) => {
+    if(err) throw err
+})
+}
+
 module.exports = {
     getAvailablePlayers,
     addPlayerToCampaign,
-    getPlayerCharactersFromCampaign
+    getPlayerCharactersFromCampaign,
+    createCampaign
 }

@@ -21,7 +21,14 @@ const editCharacter = (characterID, characterName, characterClass, characterRace
     })
 }
 
+const createCharacter = (characterName, characterClass, characterRace, userID) => {
+    sql.query("INSERT INTO `hracskepostavy`(`Jmeno`, `Povolani`, `Rasa`, `Uroven`, `UzivateleID`) VALUES ('"+characterName+"','"+characterClass+"','"+characterRace+"',0,"+userID+")", (err, sqlResult) => {
+        if(err) throw err
+    })
+}
+
 module.exports = {
     getCharacterData,
-    editCharacter
+    editCharacter,
+    createCharacter
 }
