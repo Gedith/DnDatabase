@@ -12,4 +12,8 @@ router.get('/campaign/addPlayer', campaignController.indexAddPlayer)
 
 router.post('/campaign/addPlayer', campaignController.addPlayer)
 
+router.get('/world/create', campaignController.indexCreateWorld)
+
+router.post('/world/create', campaignController.createWorld)
+
 module.exports = router

@@ -1,8 +1,5 @@
 const mainModule = require('../modules/mainModule')
 
-const bcrypt = require('bcrypt')
-const saltRounds = 10
-
 const index = (req, res) => {
     res.render('login')
 }

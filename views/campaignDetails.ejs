@@ -3,11 +3,15 @@
     <%- include('./partials/main_head.ejs') %>
 <body>
     <h1>Details of campaign - <%= kampan.Nazev %></h1>
-    <a href="/campaign/addPlayer">Přidat postavu</a><hr>
-    <h2>Hráčské postavy</h2>
+    <a href="/campaign/addPlayer">Přidat postavu</a>
+    <h2>Hráčské postavy</h2><hr>
     <% characters.forEach(character => { %>
         <a href="/character/details/<%= character.characterID %>"><%= character.characterName %></a>
     <% }) %>
-
+    <h2>Světy</h2>
+    <a href="/world/create">Vytvořit svět</a><hr>
+    <% worlds.forEach(world => { %>
+       <a href="/world/details/<%= world.ID %>"><%= world.name %></a> 
+    <% }) %>
 </body>
 </html>

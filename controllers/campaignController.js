@@ -20,7 +20,10 @@ const campaignDetails = (req, res) => {
     }
     campaignModule.getPlayerCharactersFromCampaign(id)
     .then((characters) => {
-        res.render('campaignDetails', { kampan: spravnaKampan, characters })
+        campaignModule.getWorlds(id)
+        .then((svety) => {
+            res.render('campaignDetails', { kampan: spravnaKampan, characters, worlds: svety })
+        })
     })
 }
 
@@ -39,10 +42,21 @@ const addPlayer = (req, res) => {
     res.redirect('/campaign/details/'+req.session.campaignID)
 }
 
+const indexCreateWorld = (req, res) => {
+    res.render('createWorld')
+}
+
+const createWorld = (req, res) => {
+    campaignModule.createWorld(req.body.name, req.session.campaignID)
+    res.redirect('/campaign/details/'+req.session.campaignID)
+}
+
 module.exports = {
     indexCreateCampaign,
     createCampaign,
     campaignDetails,
     indexAddPlayer,
-    addPlayer
+    addPlayer,
+    indexCreateWorld,
+    createWorld
 }

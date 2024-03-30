@@ -4,6 +4,7 @@ const session = require('express-session')
 const mainRouters = require('./routes/mainRoutes')
 const campaignRouters = require('./routes/campaignRoutes')
 const characterRouters = require('./routes/characterRoutes')
+const worldRouters = require('./routes/worldRoutes')
 const { render } = require('ejs')
 
 app.listen(3000)
@@ -20,6 +21,8 @@ app.use(session({
 app.use(mainRouters)
 app.use(campaignRouters)
 app.use(characterRouters)
+app.use(worldRouters)
+
 app.use((req, res) => {
     res.status(404).render('404')
 })

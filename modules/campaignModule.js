@@ -41,9 +41,33 @@ const createCampaign = (campaignName, userID) => {
 })
 }
 
+const createWorld = (worldName, campaignID) => {
+  sql.query("INSERT INTO `svety`(`JmenoSveta`, `KampaneID`) VALUES ('"+worldName+"','"+campaignID+"')", (err, sqlResult) => {
+    if(err) throw err
+  })
+}
+
+const getWorlds = (campaignID) => {
+  return new Promise((resolve, reject) => {
+    sql.query("SELECT svety.JmenoSveta, svety.SvetyID FROM `svety` WHERE svety.KampaneID = "+campaignID, (err, sqlResult) => {
+      const svety = []
+      if(err) throw err
+      sqlResult.forEach((svet) => {
+        svety.push({
+          ID: svet.SvetyID,
+          name: svet.JmenoSveta
+        })
+      })
+      resolve(svety)
+    })
+  })
+}
+
 module.exports = {
     getAvailablePlayers,
     addPlayerToCampaign,
     getPlayerCharactersFromCampaign,
-    createCampaign
+    createCampaign,
+    createWorld,
+    getWorlds
 }
