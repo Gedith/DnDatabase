@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    <h1>Přidat hráče do své kampaně</h1>
+    <a href="/home">Domů</a>
+    <hr>
+    <% for (let i = 0; i < freeCharacters.length; i++) { %>
+        <form action="/campaign/addPlayer" method="post">
+            <p><b><%= freeCharacters[i].characterName %></b> - vytvořen uživatelem: <b><%= freeCharacters[i].username %></b></p>
+            <button name="chosenCharacterName" value="<%= freeCharacters[i].characterName %>" >Přidat <%= freeCharacters[i].characterName %></button>
+        </form> 
+    <% } %>
+</body>
+</html>

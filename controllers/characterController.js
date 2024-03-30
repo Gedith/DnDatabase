@@ -21,6 +21,7 @@ const characterDetails = async (req, res) => {
     })
 }
 
+
 module.exports = {
     indexCreateCharacter,
     createCharacter,

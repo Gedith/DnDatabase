@@ -8,4 +8,8 @@ router.post('/campaign/create', campaignController.createCampaign)
 
 router.get('/campaign/details/:id', campaignController.campaignDetails)
 
+router.get('/campaign/addPlayer', campaignController.indexAddPlayer)
+
+router.post('/campaign/addPlayer', campaignController.addPlayer)
+
 module.exports = router

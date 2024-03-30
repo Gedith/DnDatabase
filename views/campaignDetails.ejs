@@ -3,6 +3,11 @@
     <%- include('./partials/main_head.ejs') %>
 <body>
     <h1>Details of campaign - <%= kampan.Nazev %></h1>
+    <a href="/campaign/addPlayer">Přidat postavu</a><hr>
+    <h2>Hráčské postavy</h2>
+    <% characters.forEach(character => { %>
+        <a href="/character/details/<%= character.characterID %>"><%= character.characterName %></a>
+    <% }) %>
 
 </body>
 </html>
