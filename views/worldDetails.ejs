@@ -3,28 +3,36 @@
     <%- include('./partials/main_head.ejs') %>
 <body>
     <h1>Detaily světa <%= worldName %></h1>
-    <a href="/home">Domů</a>
+    <a href="/home">Domů</a><hr>
 
 
     <h3>Bestiář</h3>
-    <a href="/world/animal/add">Vytvořit nové zvíře</a><hr>
+    <a href="/world/animal/add">Vytvořit nové zvíře</a><br>
 
     <% for (let i = 0; i < animals.length; i++) { %>
        <% if(animals[i].visible == 1 || typeOfUser == 'PJ') { %> 
             <a href="/world/animal/details/<%= animals[i].ID %>"><%= animals[i].name %></a>
         <% } %>
     <% } %>
-
+        <hr>
     <h3>Herbář</h3>
-    <a href="/world/flower/add">Vytvořit novou květinu</a><hr>
+    <a href="/world/flower/add">Vytvořit novou květinu</a><br>
 
     <% for (let i = 0; i < flowers.length; i++) { %>
         <% if(flowers[i].visible == 1 || typeOfUser == 'PJ') { %> 
              <a href="/world/flower/details/<%= flowers[i].ID %>"><%= flowers[i].name %></a>
          <% } %>
      <% } %>
+            <hr>
+    <h3>NPCs</h3>
+    <a href="/world/npc/add">Vytvořit nové npc</a><br>
 
-    <h3>NPCs - todo</h3>
+    <% for (let i = 0; i < npcs.length; i++) { %>
+        <% if(npcs[i].visible == 1 || typeOfUser == 'PJ') { %> 
+             <a href="/world/npc/details/<%= npcs[i].ID %>"><%= npcs[i].name %></a>
+         <% } %>
+     <% } %>
+            <hr>
     <h3>Mapy - todo</h3>
 
 </body>

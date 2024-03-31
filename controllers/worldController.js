@@ -8,7 +8,10 @@ const indexWorldDetails = (req, res) => {
         .then((animals) => {
             worldModule.getFlowersFromWorld(req.session.worldID)
             .then((flowers) => {
-                res.render('worldDetails', { worldName, animals, flowers, typeOfUser: req.session.typeOfUser })
+                worldModule.getNPCsFromWorld(req.session.worldID)
+                .then((npcs) => {
+                    res.render('worldDetails', { worldName, animals, flowers, npcs, typeOfUser: req.session.typeOfUser })
+                })
             })
         })
     })
@@ -46,6 +49,22 @@ const flowerDetails = (req, res) => {
     })
 }
 
+const indexCreateNPC = (req, res) => {
+    res.render('createNPC')
+}
+
+const createNPC = (req, res) => {
+    worldModule.createNPC(req.body.name, req.body.location, req.body.description, req.body.class, req.body.race, req.session.worldID)
+    res.redirect('/world/details/'+req.session.worldID)
+}
+
+const NPCDetails = (req, res) => {
+    worldModule.getNPCData(req.params.id)
+    .then((npc) => {
+        res.render('npcDetails', { npc })
+    })
+}
+
 module.exports = {
     indexWorldDetails,
     indexCreateAnimal,
@@ -53,5 +72,8 @@ module.exports = {
     animalDetails,
     indexCreateFlower,
     createFlower,
-    flowerDetails
+    flowerDetails,
+    indexCreateNPC,
+    createNPC,
+    NPCDetails
 }

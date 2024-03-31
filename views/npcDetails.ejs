@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    <h1>Details of NPC - <%= npc.name %></h1>
+    <a href="javascript:history.back()">Zpět</a>
+
+    <p>Jméno: <%= npc.name %></p>
+    <p>Lokace: <%= npc.location %></p>
+    <p>Třída: <%= npc.class %></p>
+    <p>Rasa: <%= npc.race %></p>
+    <p>Popis: <%= npc.description %></p>
+
+    <p>Schopnosti - todo</p>
+
+</body>
+</html>

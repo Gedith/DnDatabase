@@ -88,6 +88,49 @@ const getFlowerData = (flowerID) => {
     })
 }
 
+const createNPC = (name, location, description, npcclass, race, worldID) => {
+    sql.query("INSERT INTO `npcpostavy`(`Jmeno`, `Poloha`, `Popis`, `Povolani`, `Rasa`, `SvetyID`) VALUES ('"+name+"','"+location+"','"+description+"','"+npcclass+"','"+race+"','"+worldID+"')", (err, sqlResult) =>{
+        if(err) throw err
+    })
+}
+
+const getNPCsFromWorld = (worldID) => {
+    return new Promise((resolve, reject) => {
+        sql.query("SELECT * FROM `npcpostavy` WHERE npcpostavy.SvetyID = "+worldID, (err, sqlResult) => {
+            const npcs = []
+            sqlResult.forEach((npc) => {
+                npcs.push({
+                    ID: npc.NpcpostavyID,
+                    name: npc.Jmeno,
+                    location: npc.Poloha,
+                    description: npc.Popis,
+                    class: npc.Povolani,
+                    race: npc.Rasa,
+                    visible: npc.ViditelneHraci
+                })
+            })
+            resolve(npcs)
+        })
+    })
+}
+
+const getNPCData = (npcID) => {
+    return new Promise((resolve, reject) => {
+        sql.query("SELECT * FROM `npcpostavy` WHERE npcpostavy.NpcpostavyID = "+npcID, (err, sqlResult) => {
+            const npc = {
+                ID: sqlResult[0].NpcpostavyID,
+                name: sqlResult[0].Jmeno,
+                location: sqlResult[0].Poloha,
+                description: sqlResult[0].Popis,
+                class: sqlResult[0].Povolani,
+                race: sqlResult[0].Rasa,
+                visible: sqlResult[0].ViditelneHraci
+            }
+            resolve(npc)
+        })
+    })
+}
+
 module.exports = {
     getWorldName,
     createAnimal,
@@ -95,5 +138,8 @@ module.exports = {
     getAnimalData,
     createFlower,
     getFlowersFromWorld,
-    getFlowerData
+    getFlowerData,
+    createNPC,
+    getNPCsFromWorld,
+    getNPCData
 }

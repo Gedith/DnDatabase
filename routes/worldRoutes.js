@@ -16,4 +16,10 @@ router.post('/world/flower/add', worldController.createFlower)
 
 router.get('/world/flower/details/:id', worldController.flowerDetails)
 
+router.get('/world/npc/add', worldController.indexCreateNPC)
+
+router.post('/world/npc/add', worldController.createNPC)
+
+router.get('/world/npc/details/:id', worldController.NPCDetails)
+
 module.exports = router

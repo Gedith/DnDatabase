@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    
+    <h1>Vytvoř nové NPC do svého světa</h1>
+    <a href="javascript:history.back()">Zpět</a>
+
+    <form action="/world/npc/add" method="POST">
+        <label for="name">Jméno NPC</label>
+        <input type="text" id="name" name="name">
+        <label for="location">Lokace</label>
+        <input type="text" id="location" name="location">
+        <label for="class">Třída</label>
+        <input type="text" id="class" name="class">
+        <label for="race">Rasa</label>
+        <input type="text" id="race" name="race">
+        <label for="description">Popis</label>
+        <input type="textarea" id="description" name="description">
+        <button>Odeslat</button>
+    </form>
+
+</body>
+</html>
