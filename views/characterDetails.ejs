@@ -3,12 +3,18 @@
     <%- include('./partials/main_head.ejs') %>
 <body>
     <h1>Details of character - <%= character.name %></h1>
-    <a href="javascript:history.back()">Zpět</a>
-    <p>kampaň - todo</p>
+    <a href="/home">Domů</a>
 
     <p>Třída: <%= character.class %></p>
     <p>Rasa: <%= character.race %></p>
     <p>Úroveň: <%= character.level %></p>
+    <p>Síla: <%= character.str %></p>
+    <p>Obratnost: <%= character.dex %></p>
+    <p>Inteligence: <%= character.int %></p>
+    <p>Charisma: <%= character.cha %></p>
+    <p>Postřeh: <%= character.con %></p>
+    <p>Moudrost: <%= character.wis %></p>
+    <p>Popisek: <%= character.desc %></p>
     <% if(character.campaignID){ %>
         <p>kampaň: <a href="/campaign/details/<%= character.campaignID%>"><%= character.campaignName %></a></p>
     <% } %>
@@ -17,6 +23,8 @@
 
 
     <h3>Schopnosti - todo</h3>
+
+    
 
 </body>
 </html>

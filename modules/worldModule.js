@@ -1,5 +1,3 @@
-const { get } = require("../routes/worldRoutes")
-
 const getWorldName = (worldID) => {
     return new Promise((resolve, reject) => {
         sql.query("SELECT svety.JmenoSveta FROM `svety` WHERE svety.SvetyID = "+worldID, (err, sqlResult) => {
@@ -228,6 +226,24 @@ const changeMapVisibility = (mapID) => {
     })
 }
 
+const animalDel = (animalID) => {
+    sql.query("DELETE FROM `zivocichove` WHERE zivocichove.ZivocichoveID = "+animalID, (err, sqlResult) => {
+        if(err) throw err
+    })
+}
+
+const flowerDel = (flowerID) => {
+    sql.query("DELETE FROM `kytky` WHERE KytkyID = "+flowerID, (err) => {
+        if(err) throw err
+    })
+}
+
+const npcDel = (npcID) => {
+    sql.query("DELETE FROM `npcpostavy` WHERE NpcpostavyID = "+npcID, (err) => {
+        if(err) throw err
+    })
+}
+
 module.exports = {
     getWorldName,
     createAnimal,
@@ -248,5 +264,8 @@ module.exports = {
     changeAnimalVisibility,
     changeFlowerVisibility,
     changeNPCVisibility,
-    changeMapVisibility
+    changeMapVisibility,
+    animalDel,
+    flowerDel,
+    npcDel
 }

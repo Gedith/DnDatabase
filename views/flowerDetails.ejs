@@ -9,5 +9,9 @@
     <p>Místo výskytu: <%= flower.location %></p>
     <p>Vlastnosti: <%= flower.properties %></p>
 
+    <% if(typeOfUser == "PJ") { %>
+        <a href="/world/flower/del/<%= flower.ID %>">Smazat květinu</a>
+    <% } %>
+
 </body>
 </html>

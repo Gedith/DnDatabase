@@ -9,5 +9,9 @@
     <p>Druh: <%= animal.species %></p>
     <p>Popis: <%= animal.description %></p>
 
+    <% if(typeOfUser == "PJ") { %>
+        <a href="/world/animal/del/<%= animal.ID %>">Smazat zvíře</a>
+    <% } %>
+
 </body>
 </html>

@@ -1,5 +1,6 @@
 const worldModule = require('../modules/worldModule')
 const fs = require('fs')
+const { type } = require('os')
 const path = require('path')
 
 const indexWorldDetails = (req, res) => {
@@ -29,9 +30,10 @@ const createAnimal = (req, res) => {
 }
 
 const animalDetails = (req, res) => {
+    const typeOfUser = req.session.typeOfUser
     worldModule.getAnimalData(req.params.id)
     .then((animal) => {
-        res.render('animalDetails', { animal })
+        res.render('animalDetails', { animal , typeOfUser})
     })
 }
 
@@ -45,9 +47,10 @@ const createFlower = (req, res) => {
 }
 
 const flowerDetails = (req, res) => {
+    const typeOfUser = req.session.typeOfUser
     worldModule.getFlowerData(req.params.id)
     .then((flower) => {
-        res.render('flowerDetails', { flower })
+        res.render('flowerDetails', { flower, typeOfUser })
     })
 }
 
@@ -89,11 +92,12 @@ const addMap = (req, res) => {
 const indexMapDetail = (req, res) => {
     req.session.mapID = req.params.id
     const userID = req.session.userID
+    const typeOfUser = req.session.typeOfUser
     worldModule.getMapData(req.params.id)
     .then((map) => {
         worldModule.getTowns(req.params.id)
         .then((towns) => {
-            res.render('mapDetails', { map, userID, towns })
+            res.render('mapDetails', { map, userID, towns, typeOfUser})
         })
     })
 }
@@ -134,6 +138,21 @@ const mapVisibility = (req, res) => {
     res.redirect('/world/maps/')
 }
 
+const animalDel = (req, res) => {
+    worldModule.animalDel(req.params.id)
+    res.redirect('/world/details/'+req.session.worldID)
+}
+
+const flowerDel = (req, res) => {
+    worldModule.flowerDel(req.params.id)
+    res.redirect('/world/details/'+req.session.worldID)
+}
+
+const npcDel = (req, res) => {
+    worldModule.npcDel(req.params.id)
+    res.redirect('/world/details/'+req.session.worldID)
+}
+
 module.exports = {
     indexWorldDetails,
     indexCreateAnimal,
@@ -155,5 +174,8 @@ module.exports = {
     animalVisibility,
     flowerVisibility,
     npcVisibility,
-    mapVisibility
+    mapVisibility,
+    animalDel,
+    flowerDel,
+    npcDel
 }

@@ -5,11 +5,11 @@ const indexCreateCharacter = (req, res) => {
 }
 
 const createCharacter = (req, res) => {
-    characterModule.createCharacter(req.body.name, req.body.class, req.body.race, req.session.userID)
+    characterModule.createCharacter(req.body.name, req.body.class, req.body.race,req.body.str, req.body.dex, req.body.int, req.body.cha, req.body.con, req.body.wis, req.session.userID)
     res.redirect('/home')
 }
 
-const characterDetails = async (req, res) => {
+const characterDetails = (req, res) => {
     const id = req.params.id
     characterModule.getCharacterData(id)
     .then((character) => {
@@ -29,15 +29,15 @@ const characterFreeDetails = (req, res) => {
 
 const indexCharacterEdit = (req, res) => {
     const characterID = req.params.id
-    characterModule.getCharacterData(characterID)
+    characterModule.getFreeCharacterData(characterID)
     .then((character) => {
         res.render('editCharacter', { character })
     })
 }
 
 const editCharacter = (req, res) => {
-    characterModule.editCharacter(req.params.id, req.body.name, req.body.class, req.body.race, req.body.level)
-    res.redirect('/character/details/'+req.params.id)
+    characterModule.editCharacter(req.params.id, req.body.name, req.body.class, req.body.race, req.body.level, req.body.str, req.body.dex, req.body.int, req.body.cha, req.body.con, req.body.wis, req.body.desc)
+    res.redirect('/character/free/details/'+req.params.id)
 }
 
 module.exports = {
