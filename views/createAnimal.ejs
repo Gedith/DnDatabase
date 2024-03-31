@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    
+    <h1>Vytvoř nové zvíře do svého světa</h1>
+
+    <form action="/world/animal/add" method="POST">
+        <label for="name">Název zvířete</label>
+        <input type="text" id="name" name="name">
+        <label for="species">Druh</label>
+        <input type="text" id="species" name="species">
+        <label for="description">Popis</label>
+        <input type="textarea" id="description" name="description">
+        <button>Odeslat</button>
+    </form>
+
+</body>
+</html>

@@ -6,8 +6,24 @@
     <a href="/home">Domů</a>
 
 
-    <h3>Bestiář - todo</h3>
-    <h3>Herbář - todo</h3>
+    <h3>Bestiář</h3>
+    <a href="/world/animal/add">Vytvořit nové zvíře</a><hr>
+
+    <% for (let i = 0; i < animals.length; i++) { %>
+       <% if(animals[i].visible == 1 || typeOfUser == 'PJ') { %> 
+            <a href="/world/animal/details/<%= animals[i].ID %>"><%= animals[i].name %></a>
+        <% } %>
+    <% } %>
+
+    <h3>Herbář</h3>
+    <a href="/world/flower/add">Vytvořit novou květinu</a><hr>
+
+    <% for (let i = 0; i < flowers.length; i++) { %>
+        <% if(flowers[i].visible == 1 || typeOfUser == 'PJ') { %> 
+             <a href="/world/flower/details/<%= flowers[i].ID %>"><%= flowers[i].name %></a>
+         <% } %>
+     <% } %>
+
     <h3>NPCs - todo</h3>
     <h3>Mapy - todo</h3>
 

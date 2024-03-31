@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    
+    <h1>Vytvoř novou květinu do svého světa</h1>
+
+    <form action="/world/flower/add" method="POST">
+        <label for="name">Název květiny</label>
+        <input type="text" id="name" name="name">
+        <label for="location">Místo výskytu</label>
+        <input type="text" id="location" name="location">
+        <label for="properties">Vlastnosti</label>
+        <input type="textarea" id="properties" name="properties">
+        <button>Odeslat</button>
+    </form>
+
+</body>
+</html>
