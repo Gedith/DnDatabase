@@ -70,10 +70,10 @@ const NPCDetails = (req, res) => {
 const indexMaps = (req, res) => {
     const userID = req.session.userID
     const worldID = req.session.worldID
+    const typeOfUser = req.session.typeOfUser
     worldModule.getMaps(req.session.worldID)
     .then((maps) => {
-
-        res.render('maps', { maps , userID, worldID })
+        res.render('maps', { maps , userID, worldID, typeOfUser })
     })
 }
 
@@ -114,6 +114,26 @@ const getTownData = (req, res) => {
     })
 }
 
+const animalVisibility = (req, res) => {
+    worldModule.changeAnimalVisibility(req.params.id)
+    res.redirect('/world/details/'+req.session.worldID)
+}
+
+const flowerVisibility = (req, res) => {
+    worldModule.changeFlowerVisibility(req.params.id)
+    res.redirect('/world/details/'+req.session.worldID)
+}
+
+const npcVisibility = (req, res) => {
+    worldModule.changeNPCVisibility(req.params.id)
+    res.redirect('/world/details/'+req.session.worldID)
+}
+
+const mapVisibility = (req, res) => {
+    worldModule.changeMapVisibility(req.params.id)
+    res.redirect('/world/maps/')
+}
+
 module.exports = {
     indexWorldDetails,
     indexCreateAnimal,
@@ -131,5 +151,9 @@ module.exports = {
     indexMapDetail,
     indexAddTown,
     addTown,
-    getTownData
+    getTownData,
+    animalVisibility,
+    flowerVisibility,
+    npcVisibility,
+    mapVisibility
 }

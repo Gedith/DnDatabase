@@ -20,7 +20,7 @@ const homePage = (req, res) => {
         mainModule.getCampaignsFromUser(userID)
         .then((kampane) => {            
             req.session.kampane = kampane
-            res.render('home', { userName: req.session.userName, kampane: kampane, typeOfUser, characters: null})
+            res.render('home', { userName: req.session.userName, kampane: kampane, typeOfUser, characters: null, freeCharacters: null})
         }).catch((message) => {
             console.log(message)
         })
@@ -28,7 +28,10 @@ const homePage = (req, res) => {
         mainModule.getHracskePostavy(userID)
         .then((characters) => {
             req.session.characters = characters
-            res.render('home', { userName: req.session.userName, characters, typeOfUser, kampane: null })
+            mainModule.getFreeHracskePostavy(userID)
+            .then((freeCharacters) => {
+                res.render('home', { userName: req.session.userName, characters, typeOfUser, freeCharacters, kampane: null })
+            })
         }).catch((message) => {
             console.log(message)
         })

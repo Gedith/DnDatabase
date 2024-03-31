@@ -3,7 +3,7 @@
     <%- include('./partials/main_head.ejs') %>
 <body>
     <h1>Edit character - <%= character.name %></h1>
-    <a href="/home">Domů</a>
+    <a href="javascript:history.back()">Zpět</a><hr>
 
     <form action="/character/edit/<%= character.ID %>" method="post">
         <label for="name">Jméno</label>

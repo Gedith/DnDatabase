@@ -9,6 +9,9 @@
     <p>Třída: <%= character.class %></p>
     <p>Rasa: <%= character.race %></p>
     <p>Úroveň: <%= character.level %></p>
+    <% if(character.campaignID){ %>
+        <p>kampaň: <a href="/campaign/details/<%= character.campaignID%>"><%= character.campaignName %></a></p>
+    <% } %>
     
     <a href="/character/edit/<%= character.ID %>">Upravit atributy postavy</a>
 

@@ -14,6 +14,14 @@ const getAvailablePlayers = (campaignID) => {
     })
 }
 
+const getCampaignData = (campaignID) => {
+  return new Promise((resolve, reject) => {
+    sql.query("SELECT kampane.Nazev FROM `kampane` WHERE KampaneID = "+campaignID, (err, sqlResult) => {
+      resolve(sqlResult[0].Nazev)
+    })
+  })
+}
+
 const getPlayerCharactersFromCampaign = (campaignID) => {
   return new Promise((resolve, reject) => {
     const characters = []
@@ -69,5 +77,6 @@ module.exports = {
     getPlayerCharactersFromCampaign,
     createCampaign,
     createWorld,
-    getWorlds
+    getWorlds,
+    getCampaignData
 }

@@ -64,4 +64,12 @@ router.post('/world/maps/town/add', worldController.addTown)
 
 router.get('/world/maps/town/details/:id', worldController.getTownData)
 
+router.get('/world/animal/visibility/:id', worldController.animalVisibility)
+
+router.get('/world/flower/visibility/:id', worldController.flowerVisibility)
+
+router.get('/world/npc/visibility/:id', worldController.npcVisibility)
+
+router.get('/world/map/visibility/:id', worldController.mapVisibility)
+
 module.exports = router

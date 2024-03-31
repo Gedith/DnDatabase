@@ -204,6 +204,30 @@ const getTownData = (townID) => {
     })
 }
 
+const changeAnimalVisibility = (animalID) => {
+    sql.query("Update zivocichove SET ViditelneHraci = CASE WHEN ViditelneHraci = 0 THEN 1 ELSE 0 END WHERE ZivocichoveID = "+animalID, (err, sqlResult) => {
+        if(err) throw err
+    })
+}
+
+const changeFlowerVisibility = (flowerID) => {
+    sql.query("Update kytky SET ViditelneHraci = CASE WHEN ViditelneHraci = 0 THEN 1 ELSE 0 END WHERE KytkyID = "+flowerID, (err, sqlResult) => {
+        if(err) throw err
+    })
+}
+
+const changeNPCVisibility = (npcID) => {
+    sql.query("Update npcpostavy SET ViditelneHraci = CASE WHEN ViditelneHraci = 0 THEN 1 ELSE 0 END WHERE NpcpostavyID = "+npcID, (err, sqlResult) => {
+        if(err) throw err
+    })
+}
+
+const changeMapVisibility = (mapID) => {
+    sql.query("Update mapy SET ViditelneHraci = CASE WHEN ViditelneHraci = 0 THEN 1 ELSE 0 END WHERE MapyID = "+mapID, (err, sqlResult) => {
+        if(err) throw err
+    })
+}
+
 module.exports = {
     getWorldName,
     createAnimal,
@@ -220,5 +244,9 @@ module.exports = {
     getMapData,
     createTown,
     getTowns,
-    getTownData
+    getTownData,
+    changeAnimalVisibility,
+    changeFlowerVisibility,
+    changeNPCVisibility,
+    changeMapVisibility
 }

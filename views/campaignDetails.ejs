@@ -2,15 +2,19 @@
 <html lang="en">
     <%- include('./partials/main_head.ejs') %>
 <body>
-    <h1>Details of campaign - <%= kampan.Nazev %></h1>
+    <h1>Details of campaign - <%= campaignName %></h1>
     <h2>Hráčské postavy</h2>
-    <a href="/campaign/addPlayer">Přidat postavu</a><br>
+    <% if(typeOfUser == "PJ") { %>
+        <a href="/campaign/addPlayer">Přidat postavu</a><br>
+    <% } %>
     <% characters.forEach(character => { %>
         <a href="/character/details/<%= character.characterID %>"><%= character.characterName %></a>
     <% }) %>
     <hr>
     <h2>Světy</h2>
-    <a href="/world/create">Vytvořit svět</a><br>
+    <% if(typeOfUser == "PJ") { %>
+        <a href="/world/create">Vytvořit svět</a><br>
+    <% } %>
     <% worlds.forEach(world => { %>
        <a href="/world/details/<%= world.ID %>"><%= world.name %></a> 
     <% }) %>

@@ -11,11 +11,19 @@ const createCharacter = (req, res) => {
 
 const characterDetails = async (req, res) => {
     const id = req.params.id
-    await characterModule.getCharacterData(id)
-    .then((message) => {
-        res.render('characterDetails', { character: message })
+    characterModule.getCharacterData(id)
+    .then((character) => {
+        res.render('characterDetails', { character })
     }).catch((message) => {
         console.log('catch message:'+message)
+    })
+}
+
+const characterFreeDetails = (req, res) => {
+    const id = req.params.id
+    characterModule.getFreeCharacterData(id)
+    .then((character) => {
+        res.render('characterDetails', { character })
     })
 }
 
@@ -37,5 +45,6 @@ module.exports = {
     createCharacter,
     characterDetails,
     indexCharacterEdit,
-    editCharacter
+    editCharacter,
+    characterFreeDetails
 }

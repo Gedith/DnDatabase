@@ -1,9 +1,27 @@
 const getCharacterData =  (id) => {
     return new Promise( (resolve, reject) => {
-        sql.query("SELECT * FROM hracskepostavy WHERE hracskepostavy.HracskepostavyID = "+id, (err, sqlResult) => {
+        sql.query("SELECT hracskepostavy.HracskepostavyID AS ID, `Jmeno`, `Povolani`, `Rasa`, `Uroven`, hracskepostavy.KampaneID , kampane.Nazev FROM `hracskepostavy` INNER JOIN kampane ON hracskepostavy.KampaneID = kampane.KampaneID WHERE HracskepostavyID = "+id, (err, sqlResult) => {
             if(err) throw err 
             const character = {
-                ID: sqlResult[0].HracskepostavyID,
+                ID: sqlResult[0].ID,
+                name: sqlResult[0].Jmeno,
+                class: sqlResult[0].Povolani,
+                race: sqlResult[0].Rasa,
+                level: sqlResult[0].Uroven,
+                campaignID: sqlResult[0].KampaneID,
+                campaignName: sqlResult[0].Nazev
+            }
+            resolve(character)
+        })
+    })    
+}
+
+const getFreeCharacterData = (id) => {
+    return new Promise( (resolve, reject) => {
+        sql.query("SELECT hracskepostavy.HracskepostavyID AS ID, `Jmeno`, `Povolani`, `Rasa`, `Uroven`, hracskepostavy.KampaneID FROM `hracskepostavy` WHERE HracskepostavyID = "+id, (err, sqlResult) => {
+            if(err) throw err 
+            const character = {
+                ID: sqlResult[0].ID,
                 name: sqlResult[0].Jmeno,
                 class: sqlResult[0].Povolani,
                 race: sqlResult[0].Rasa,
@@ -12,7 +30,6 @@ const getCharacterData =  (id) => {
             resolve(character)
         })
     })    
- 
 }
 
 const editCharacter = (characterID, characterName, characterClass, characterRace, characterLevel) => {
@@ -30,5 +47,6 @@ const createCharacter = (characterName, characterClass, characterRace, userID) =
 module.exports = {
     getCharacterData,
     editCharacter,
-    createCharacter
+    createCharacter,
+    getFreeCharacterData
 }

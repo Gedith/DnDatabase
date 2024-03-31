@@ -29,7 +29,24 @@ const getCampaignsFromUser = (userID) => {
 
 const getHracskePostavy = (userID) => {
     return new Promise((resolve, reject) => {
-        sql.query("SELECT * FROM `hracskepostavy` WHERE Hracskepostavy.UzivateleID = "+userID, (err, sqlResult) => {
+        sql.query("SELECT * FROM `hracskepostavy` WHERE Hracskepostavy.UzivateleID = "+userID+" AND KampaneID IS NOT NULL", (err, sqlResult) => {
+            let characters = []
+            if(err) throw err
+            sqlResult.forEach((character) => {
+                characters.push({
+                    ID: character.HracskepostavyID,
+                    name: character.Jmeno,
+                    level: character.Uroven
+                })
+            })
+            resolve(characters)
+        })
+    })
+}
+
+const getFreeHracskePostavy = (userID) => {
+    return new Promise((resolve, reject) => {
+        sql.query("SELECT * FROM `hracskepostavy` WHERE Hracskepostavy.UzivateleID = "+userID+" AND KampaneID IS NULL", (err, sqlResult) => {
             let characters = []
             if(err) throw err
             sqlResult.forEach((character) => {
@@ -67,5 +84,6 @@ module.exports = {
     createUser,
     getCampaignsFromUser,
     getHracskePostavy,
-    login
+    login,
+     getFreeHracskePostavy
 }
