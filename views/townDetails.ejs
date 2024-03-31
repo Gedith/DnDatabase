@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    <h1>Details of town - <%= town.name %></h1>
+    <a href="javascript:history.back()">Zpět</a>
+
+    <p>Název: <%= town.name %></p>
+    <p>Lokace: <%= town.location %></p>
+    <p>Popis: <%= town.description %></p>
+
+</body>
+</html>

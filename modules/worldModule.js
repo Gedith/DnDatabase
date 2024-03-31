@@ -131,6 +131,79 @@ const getNPCData = (npcID) => {
     })
 }
 
+const addMap = (fileName, worldID) => {
+    sql.query("INSERT INTO `mapy`(`Nazev`, `SvetyID`) VALUES ('"+fileName+"','"+worldID+"')", (err, sqlResult) => {
+        if(err) throw err
+    })
+}
+
+const getMaps = (worldID) => {
+    return new Promise((resolve, reject) => {
+        sql.query("SELECT * FROM `mapy` WHERE mapy.SvetyID = "+worldID, (err, sqlResult) => {
+            const maps = []
+            sqlResult.forEach((map) => {
+                maps.push({
+                    ID: map.MapyID,
+                    name: map.Nazev,
+                    visible: map.ViditelneHraci
+                })
+            })
+            resolve(maps)
+        })
+    })
+}
+
+const getMapData = (mapID) => {
+    return new Promise((resolve, reject) => {
+        sql.query("SELECT * FROM `mapy` WHERE MapyID = "+mapID, (err, sqlResult) => {
+            const map = {
+                ID: sqlResult[0].MapyID,
+                name: sqlResult[0].Nazev,
+                visible: sqlResult[0].ViditelneHraci
+            }
+            resolve(map)
+        })
+    })
+}
+
+const createTown = (name, location, description, mapID) => {
+    sql.query("INSERT INTO `mesta`(`Nazev`, `Poloha`, `Popis`, `MapyID`) VALUES ('"+name+"','"+location+"','"+description+"','"+mapID+"')", (err, sqlResult) => {
+        if(err) throw err
+    })
+}
+
+const getTowns = (mapID) => {
+    return new Promise((resolve, reject) => {
+        sql.query("SELECT * FROM `mesta` WHERE MapyID = "+mapID, (err, sqlResult) => {
+            if(err) throw err
+            const towns = []
+            sqlResult.forEach((town) => {
+                towns.push({
+                    ID: town.MestaID,
+                    name: town.Nazev,
+                    location: town.Poloha,
+                    description: town.Popis
+                })
+            })
+            resolve(towns)
+        })
+    })
+}
+
+const getTownData = (townID) => {
+    return new Promise((resolve, reject) => {
+        sql.query("SELECT * FROM `mesta` WHERE MestaID = "+townID, (err, sqlResult) => {
+            const town = {
+                ID: sqlResult[0].MestaID,
+                name: sqlResult[0].Nazev,
+                location: sqlResult[0].Poloha,
+                description: sqlResult[0].Popis
+            }
+            resolve(town)
+        })
+    })
+}
+
 module.exports = {
     getWorldName,
     createAnimal,
@@ -141,5 +214,11 @@ module.exports = {
     getFlowerData,
     createNPC,
     getNPCsFromWorld,
-    getNPCData
+    getNPCData,
+    addMap,
+    getMaps,
+    getMapData,
+    createTown,
+    getTowns,
+    getTownData
 }

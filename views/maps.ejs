@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    <h1>Mapy</h1>
+    <a href="/world/details/<%= worldID %>">Zpět</a>
+    <a href="/world/maps/add">Přidat mapu</a>
+
+    <!-- Galerie map, po kliknutí se dostane uživatel do detailu mapy -->
+    <% if(maps) { %>
+        <% for (let i = 0; i < maps.length; i++) { %>
+            <a href="/world/maps/details/<%= maps[i].ID %>"><img src="/<%= userID %>/<%= maps[i].name %>" alt="<%= maps[i].name %>" style="max-width: 500px; max-height: 500px;"></a>
+        <% } %>
+    <% } %>
+
+</body>
+</html>

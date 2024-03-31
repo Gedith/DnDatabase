@@ -5,13 +5,12 @@ const mainRouters = require('./routes/mainRoutes')
 const campaignRouters = require('./routes/campaignRoutes')
 const characterRouters = require('./routes/characterRoutes')
 const worldRouters = require('./routes/worldRoutes')
-const { render } = require('ejs')
 
 app.listen(3000)
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended:true}))
-app.use(express.static('public'))
+app.use(express.static('maps'))
 app.use(session({
     secret: 'secret_key',
     resave: true,

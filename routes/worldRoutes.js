@@ -1,6 +1,34 @@
 const express = require('express')
 const router = express.Router()
 const worldController = require('../controllers/worldController')
+const fs = require('fs')
+const path = require('path')
+
+const multer  = require('multer')
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        const userID = req.body.user
+        if(!fs.existsSync(path.join(__dirname,"..", "maps"))){
+            fs.mkdir(path.join(__dirname,"..", "maps"), (err) => {
+                if(err) throw err
+            })            
+        }
+        if(!fs.existsSync(path.join(__dirname,"..", "maps", userID))){
+        fs.mkdir(path.join(__dirname,"..", "maps", userID), (err) => {
+            if(err) throw err
+        })
+        }
+        cb(null, './maps/'+userID)
+    },
+    filename: function (req, file, cb) {
+        const name = req.body.name
+        req.session.extension = file.originalname.split(".")[1]
+        cb(null, name+"."+file.originalname.split(".")[1])
+    }
+})
+
+const upload = multer({ storage })
 
 router.get('/world/details/:id', worldController.indexWorldDetails)
 
@@ -21,5 +49,19 @@ router.get('/world/npc/add', worldController.indexCreateNPC)
 router.post('/world/npc/add', worldController.createNPC)
 
 router.get('/world/npc/details/:id', worldController.NPCDetails)
+
+router.get('/world/maps', worldController.indexMaps)
+
+router.get('/world/maps/add', worldController.indexAddMap)
+
+router.post('/world/maps/add', upload.single('map'), worldController.addMap)
+
+router.get('/world/maps/details/:id', worldController.indexMapDetail)
+
+router.get('/world/maps/town/add', worldController.indexAddTown)
+
+router.post('/world/maps/town/add', worldController.addTown)
+
+router.get('/world/maps/town/details/:id', worldController.getTownData)
 
 module.exports = router

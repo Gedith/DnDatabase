@@ -1,4 +1,6 @@
 const worldModule = require('../modules/worldModule')
+const fs = require('fs')
+const path = require('path')
 
 const indexWorldDetails = (req, res) => {
     req.session.worldID = req.params.id
@@ -65,6 +67,53 @@ const NPCDetails = (req, res) => {
     })
 }
 
+const indexMaps = (req, res) => {
+    const userID = req.session.userID
+    const worldID = req.session.worldID
+    worldModule.getMaps(req.session.worldID)
+    .then((maps) => {
+
+        res.render('maps', { maps , userID, worldID })
+    })
+}
+
+const indexAddMap = (req, res) => {
+    res.render('createMap', { userID: req.session.userID })
+}
+
+const addMap = (req, res) => {
+    worldModule.addMap(req.body.name+"."+req.session.extension, req.session.worldID)
+    res.redirect('/world/maps')
+}
+
+const indexMapDetail = (req, res) => {
+    req.session.mapID = req.params.id
+    const userID = req.session.userID
+    worldModule.getMapData(req.params.id)
+    .then((map) => {
+        worldModule.getTowns(req.params.id)
+        .then((towns) => {
+            res.render('mapDetails', { map, userID, towns })
+        })
+    })
+}
+
+const indexAddTown = (req, res) => {
+    res.render('createTown')
+}
+
+const addTown = (req, res) => {
+    worldModule.createTown(req.body.name, req.body.location, req.body.description, req.session.mapID)
+    res.redirect('/world/maps/details/'+req.session.mapID)
+}
+
+const getTownData = (req, res) => {
+    worldModule.getTownData(req.params.id)
+    .then((town) => {
+        res.render('townDetails', { town })
+    })
+}
+
 module.exports = {
     indexWorldDetails,
     indexCreateAnimal,
@@ -75,5 +124,12 @@ module.exports = {
     flowerDetails,
     indexCreateNPC,
     createNPC,
-    NPCDetails
+    NPCDetails,
+    indexMaps,
+    indexAddMap,
+    addMap,
+    indexMapDetail,
+    indexAddTown,
+    addTown,
+    getTownData
 }
