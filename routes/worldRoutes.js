@@ -5,7 +5,6 @@ const fs = require('fs')
 const path = require('path')
 
 const multer  = require('multer')
-const { animalDel } = require('../modules/worldModule')
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -78,5 +77,9 @@ router.get('/world/animal/del/:id', worldController.animalDel)
 router.get('/world/flower/del/:id', worldController.flowerDel)
 
 router.get('/world/npc/del/:id', worldController.npcDel)
+
+router.get('/world/maps/del/:name', worldController.mapDel)
+
+router.get('/world/town/del/:id', worldController.townDel)
 
 module.exports = router

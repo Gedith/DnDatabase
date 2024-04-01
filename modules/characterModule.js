@@ -1,6 +1,6 @@
 const getCharacterData =  (id) => {
     return new Promise( (resolve, reject) => {
-        sql.query("SELECT `Jmeno`, `Povolani`, `Rasa`, `Uroven`, `Strength`, `Dexterity`, `Intelligence`, `Charisma`, `Constitution`, `Wisdom`, `Popisek`, `HracskepostavyID`, hracskepostavy.KampaneID, kampane.Nazev FROM `hracskepostavy` INNER JOIN kampane ON hracskepostavy.KampaneID = kampane.KampaneID WHERE HracskepostavyID = "+id, (err, sqlResult) => {
+        sql.query("SELECT hracskepostavy.Jmeno, `Povolani`, `Rasa`, `Uroven`, `Strength`, `Dexterity`, `Intelligence`, `Charisma`, `Constitution`, `Wisdom`, `Popisek`, `HracskepostavyID`, hracskepostavy.KampaneID, kampane.Nazev, uzivatele.Jmeno AS Username FROM `hracskepostavy` INNER JOIN kampane ON hracskepostavy.KampaneID = kampane.KampaneID INNER JOIN uzivatele ON hracskepostavy.UzivateleID = uzivatele.UzivateleID WHERE HracskepostavyID ="+id, (err, sqlResult) => {
             if(err) throw err 
             const character = {
                 ID: sqlResult[0].HracskepostavyID,
@@ -16,7 +16,8 @@ const getCharacterData =  (id) => {
                 wis: sqlResult[0].Wisdom,
                 desc: sqlResult[0].Popisek,
                 campaignID: sqlResult[0].KampaneID,
-                campaignName: sqlResult[0].Nazev
+                campaignName: sqlResult[0].Nazev,
+                username:   sqlResult[0].Username
             }
             resolve(character)
         })
@@ -58,9 +59,48 @@ const createCharacter = (characterName, characterClass, characterRace, str, dex,
     })
 }
 
+const characterDel = (characterID) => {
+    sql.query("DELETE FROM `hracskepostavy` WHERE HracskepostavyID = "+characterID, (err) => {
+        if(err) throw err
+    })
+}
+
+const getSpells = (characterID) => {
+    return new Promise ((resolve, reject) => {
+        sql.query("SELECT schopnosti.Nazev, schopnosti.Popis, schopnosti.SchopnostiID FROM `schopnosti` WHERE schopnosti.HracskepostavyID = "+characterID, (err, sqlResult) => {
+            if(err) throw err
+            const spells = []
+            sqlResult.forEach(spell => {
+              spells.push({
+                ID: spell.SchopnostiID,
+                name: spell.Nazev,
+                description: spell.Popis
+              })
+            })
+            resolve(spells)
+        })
+    })
+}
+
+const createSpell = (name, desc, characterID) => {
+    sql.query("INSERT INTO `schopnosti`(`Nazev`, `Popis`, `HracskepostavyID`) VALUES ('"+name+"','"+desc+"','"+characterID+"')", (err) => {
+        if(err) throw err
+    })
+}
+
+const delSpell = (spellID) => {
+    sql.query("DELETE FROM `schopnosti` WHERE SchopnostiID = "+spellID, (err) => {
+        if(err) throw err
+    })
+}
+
 module.exports = {
     getCharacterData,
     editCharacter,
     createCharacter,
-    getFreeCharacterData
+    getFreeCharacterData,
+    characterDel,
+    getSpells,
+    createSpell,
+    delSpell
 }

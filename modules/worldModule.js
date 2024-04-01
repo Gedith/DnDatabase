@@ -244,6 +244,18 @@ const npcDel = (npcID) => {
     })
 }
 
+const townDel = (townID) => {
+    sql.query("DELETE FROM `mesta` WHERE MestaID = "+townID, (err) => {
+        if (err) throw err
+    })
+}
+
+const mapDel = (mapID) => {
+    sql.query("DELETE FROM `mapy` WHERE MapyID = "+mapID, (err) => {
+        if(err) throw err
+    })
+}
+
 module.exports = {
     getWorldName,
     createAnimal,
@@ -267,5 +279,7 @@ module.exports = {
     changeMapVisibility,
     animalDel,
     flowerDel,
-    npcDel
+    npcDel,
+    townDel,
+    mapDel
 }

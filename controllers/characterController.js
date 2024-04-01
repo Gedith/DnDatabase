@@ -11,9 +11,11 @@ const createCharacter = (req, res) => {
 
 const characterDetails = (req, res) => {
     const id = req.params.id
+    const typeOfUser = req.session.typeOfUser
+    const username = req.session.userName
     characterModule.getCharacterData(id)
     .then((character) => {
-        res.render('characterDetails', { character })
+        res.render('characterDetails', { character, username, typeOfUser })
     }).catch((message) => {
         console.log('catch message:'+message)
     })
@@ -40,11 +42,45 @@ const editCharacter = (req, res) => {
     res.redirect('/character/free/details/'+req.params.id)
 }
 
+const characterDel = (req, res) => {
+    characterModule.characterDel(req.params.id)
+    res.redirect('/home')
+}
+
+const getSpells = (req, res) => {
+    const typeOfUser = req.session.typeOfUser
+    req.session.characterID = req.params.id
+    characterModule.getSpells(req.params.id)
+    .then((spells) => {
+        res.render('characterSpells', { spells, typeOfUser, characterID: req.params.id })
+    })
+}
+
+const indexCreateSpell = (req, res) => {
+    res.render('createSpell')
+}
+
+const createSpell = (req, res) => {
+    characterModule.createSpell(req.body.name, req.body.desc, req.session.characterID)
+    res.redirect('/character/details/'+req.session.characterID)
+}
+
+const delSpell = (req, res) => {
+    characterModule.delSpell(req.params.id)
+    console.log(req.session.characterID)
+    res.redirect('/character/spells/'+req.session.characterID)
+}
+
 module.exports = {
     indexCreateCharacter,
     createCharacter,
     characterDetails,
     indexCharacterEdit,
     editCharacter,
-    characterFreeDetails
+    characterFreeDetails,
+    characterDel,
+    getSpells,
+    indexCreateSpell,
+    createSpell,
+    delSpell
 }

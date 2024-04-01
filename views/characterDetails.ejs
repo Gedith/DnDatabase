@@ -5,6 +5,8 @@
     <h1>Details of character - <%= character.name %></h1>
     <a href="/home">Domů</a>
 
+    <p>Hráč: <b><%= character.username %></b></p>
+
     <p>Třída: <%= character.class %></p>
     <p>Rasa: <%= character.race %></p>
     <p>Úroveň: <%= character.level %></p>
@@ -19,12 +21,12 @@
         <p>kampaň: <a href="/campaign/details/<%= character.campaignID%>"><%= character.campaignName %></a></p>
     <% } %>
     
-    <a href="/character/edit/<%= character.ID %>">Upravit atributy postavy</a>
+    <a href="/character/spells/<%= character.ID %>">Schopnosti postavy</a>
 
-
-    <h3>Schopnosti - todo</h3>
-
-    
+    <% if(username == character.username || typeOfUser == "PJ") { %>
+        <a href="/character/edit/<%= character.ID %>">Upravit atributy postavy</a><br>
+        <a href="/character/del/<%= character.ID %>">Smazat postavu</a>
+    <% } %>
 
 </body>
 </html>

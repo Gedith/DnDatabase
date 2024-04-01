@@ -9,5 +9,9 @@
     <p>Lokace: <%= town.location %></p>
     <p>Popis: <%= town.description %></p>
 
+    <% if(typeOfUser == "PJ") { %>
+        <a href="/world/town/del/<%= town.ID %>">Smazat město</a>
+    <% } %>
+
 </body>
 </html>

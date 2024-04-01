@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    <h1>Schopnosti postavy</h1>
+    <a href="/character/details/<%= characterID %>">Zpět</a>
+    <a href="/character/spell/create">Vytvořit schopnost</a>
+
+    <% for(var i = 0; i<spells.length;i++){ %>
+        <p><b><%= spells[i].name %></b></p>
+        <p><%= spells[i].description %></p><a href="/character/spell/del/<%= spells[i].ID %>">Smazat schopnost</a><hr>
+    <% } %>
+
+</body>
+</html>

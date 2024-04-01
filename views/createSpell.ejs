@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    
+    <h1>Vytvořit novou schopnost</h1>
+
+    <form action="/character/spell/create" method="POST">
+        <label for="name">Název schopnosti</label>
+        <input type="text" id="name" name="name">
+        <label for="desc">Popis schopnosti</label>
+        <input type="textarea" id="desc" name="desc">
+        <button>Odeslat</button>
+    </form>
+
+</body>
+</html>

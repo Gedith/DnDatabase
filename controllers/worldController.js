@@ -64,9 +64,10 @@ const createNPC = (req, res) => {
 }
 
 const NPCDetails = (req, res) => {
+    const typeOfUser = req.session.typeOfUser
     worldModule.getNPCData(req.params.id)
     .then((npc) => {
-        res.render('npcDetails', { npc })
+        res.render('npcDetails', { npc, typeOfUser })
     })
 }
 
@@ -112,9 +113,10 @@ const addTown = (req, res) => {
 }
 
 const getTownData = (req, res) => {
-    worldModule.getTownData(req.params.id)
+    const typeOfUser = req.session.typeOfUser
+    worldModule.getTownData(req.params.id   )
     .then((town) => {
-        res.render('townDetails', { town })
+        res.render('townDetails', { town, typeOfUser })
     })
 }
 
@@ -153,6 +155,28 @@ const npcDel = (req, res) => {
     res.redirect('/world/details/'+req.session.worldID)
 }
 
+const mapDel = (req,res) => {
+    console.log(req.params.name)
+    if(fs.existsSync(path.join(__dirname,"..","maps", ""+req.session.userID, req.params.name))){
+        fs.unlink(path.join(__dirname,"..","maps", ""+req.session.userID, req.params.name), (err) => {
+            if(err) throw err
+        })
+    }
+    worldModule.getTowns(req.session.mapID)
+    .then((towns) => {
+        towns.forEach(town => {
+            worldModule.townDel(town.ID)
+        })
+        worldModule.mapDel(req.session.mapID)
+        res.redirect("/world/details/"+req.session.worldID)
+    })
+}
+
+const townDel = (req, res) => {
+    worldModule.townDel(req.params.id)
+    res.redirect('/world/maps/details/'+req.session.mapID)
+}
+
 module.exports = {
     indexWorldDetails,
     indexCreateAnimal,
@@ -177,5 +201,7 @@ module.exports = {
     mapVisibility,
     animalDel,
     flowerDel,
-    npcDel
+    npcDel,
+    mapDel,
+    townDel
 }
