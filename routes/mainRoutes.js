@@ -26,6 +26,16 @@ router.get('/home', mainController.homePage)
 
 router.get('/logout', mainController.logout)
 
+router.get('/profil', mainController.profil)
+
 router.post('/', mainController.login)
+
+router.get('/profil/changeName', mainController.indexChangeName)
+
+router.post('/profil/changeName', mainController.changeName)
+
+router.get('/profil/changePass', mainController.indexChangePass)
+
+router.post('/profil/changePass', mainController.changePass)
 
 module.exports = router

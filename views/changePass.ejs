@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    
+    <h1>Změna hesla</h1>
+    <a href="javascript:history.back()">Zpět</a><hr>
+    
+    <form action="/profil/changePass" method="POST">
+        <label for="oldPass">Staré heslo</label><br>
+        <input type="password" id="oldPass" name="oldPass" required><br>
+        <label for="newPass">Nové heslo</label><br>
+        <input type="password" id="newPass" name="newPass" required><br>
+        <label for="newPassAgain">Nové heslo znovu</label><br>
+        <input type="password" id="newPassAgain" name="newPassAgain" required><br>
+        <button>Odeslat</button>
+    </form>
+
+
+</body>
+</html>

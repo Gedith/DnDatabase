@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    
+    <h1>Změna jména</h1>
+    <a href="javascript:history.back()">Zpět</a><hr>
+    
+    <form action="/profil/changeName" method="POST">
+        <label for="name">Nové jméno</label><br>
+        <input type="text" id="name" name="name" required><br>
+        <button>Odeslat</button>
+    </form>
+
+
+</body>
+</html>

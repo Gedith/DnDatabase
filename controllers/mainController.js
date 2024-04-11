@@ -59,11 +59,41 @@ const login = (req,res) => {
     })
 }
 
+const profil = (req, res) => {
+    userName = req.session.userName
+    res.render('profil')
+}
+
+const indexChangeName = (req, res) => {
+    res.render('changeName')
+}
+
+const changeName = (req, res) => {
+    UzivateleID = req.session.userID
+    mainModule.changeName(req.body.name)
+    res.redirect('/profil')
+}
+
+const indexChangePass = (req, res) => {
+    res.render('changePass')
+}
+
+const changePass = (req, res) => {
+    UzivateleID = req.session.userID
+    mainModule.changePass(req.body.oldPass, req.body.newPass, req.body.newPassAgain)
+    res.redirect('/profil')
+}
+
 module.exports = {
     index,
     registrationIndex,
     registrationCreateUser,
     homePage,
     logout,
-    login
+    login,
+    profil,
+    indexChangeName,
+    changeName,
+    indexChangePass,
+    changePass
 }

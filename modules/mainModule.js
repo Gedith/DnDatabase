@@ -1,3 +1,4 @@
+const { ifError } = require('assert')
 const bcrypt = require('bcrypt')
 const saltRounds = 10
 
@@ -80,10 +81,42 @@ const login = (name, pass) => {
     })
 }
 
+const changeName = (name) => {
+        sql.query("UPDATE uzivatele SET Jmeno = '"+name+"' WHERE UzivateleID = '"+UzivateleID+"'"), (err, sqlResult) => {
+            if(err) throw err
+        }
+}
+
+const changePass = (oldPass, newPass, newPassAgain) => {
+    return new Promise((resolve, reject) => {
+        sql.query("SELECT Heslo FROM `uzivatele` WHERE UzivateleID = '"+UzivateleID+"'", (err, sqlResult) => {
+            if(err) throw err
+            if(newPass == newPassAgain){
+                bcrypt.compare(oldPass, sqlResult[0].Heslo, (err, compare) => {
+                    if(err) throw err
+                    if(compare == true){
+                        bcrypt.hash(pass, saltRounds, (err, hash) => {
+                            resolve(sql.query("UPDATE uzivatele SET Heslo = '"+hash+"' WHERE UzivateleID = '"+UzivateleID+"'"), (err, res) => {
+                                if(err) throw err
+                            })
+                        })
+                    } else {
+                        reject('Wrong password')
+                    }
+                })
+            } else {
+                reject("Passwords doesnt match.")
+            }
+        })
+    })
+}
+
 module.exports = {
     createUser,
     getCampaignsFromUser,
     getHracskePostavy,
     login,
-     getFreeHracskePostavy
+    getFreeHracskePostavy,
+    changeName,
+    changePass
 }
