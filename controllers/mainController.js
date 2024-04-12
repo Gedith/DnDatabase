@@ -71,7 +71,8 @@ const indexChangeName = (req, res) => {
 const changeName = (req, res) => {
     UzivateleID = req.session.userID
     mainModule.changeName(req.body.name)
-    res.redirect('/profil')
+    userName = req.body.name
+    res.redirect('/home')
 }
 
 const indexChangePass = (req, res) => {
@@ -82,6 +83,13 @@ const changePass = (req, res) => {
     UzivateleID = req.session.userID
     mainModule.changePass(req.body.oldPass, req.body.newPass, req.body.newPassAgain)
     res.redirect('/profil')
+}
+
+const deleteProfil = (req, res) => {
+    UzivateleID = req.session.userID
+    mainModule.deleteProfil()
+    req.session.destroy()
+    res.redirect('/')
 }
 
 module.exports = {
@@ -95,5 +103,6 @@ module.exports = {
     indexChangeName,
     changeName,
     indexChangePass,
-    changePass
+    changePass,
+    deleteProfil
 }

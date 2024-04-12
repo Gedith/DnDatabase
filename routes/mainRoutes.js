@@ -38,4 +38,6 @@ router.get('/profil/changePass', mainController.indexChangePass)
 
 router.post('/profil/changePass', mainController.changePass)
 
+router.get('/profil/deleteProfil', mainController.deleteProfil)
+
 module.exports = router

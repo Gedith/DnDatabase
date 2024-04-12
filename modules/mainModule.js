@@ -111,6 +111,18 @@ const changePass = (oldPass, newPass, newPassAgain) => {
     })
 }
 
+const deleteProfil = () => {
+    sql.query("UPDATE hracskepostavy SET UzivateleID = NULL WHERE UzivateleID = '"+UzivateleID+"'"), (err, res) => {
+        if(err) throw err
+    }
+    sql.query("UPDATE kampane SET UzivateleID = NULL WHERE UzivateleID = '"+UzivateleID+"'"), (err, res) => {
+        if(err) throw err
+    }
+    sql.query("DELETE FROM uzivatele WHERE UzivateleID = '"+UzivateleID+"'"), (err, res) => {
+        if(err) throw err
+    }
+    }
+
 module.exports = {
     createUser,
     getCampaignsFromUser,
@@ -118,5 +130,6 @@ module.exports = {
     login,
     getFreeHracskePostavy,
     changeName,
-    changePass
+    changePass,
+    deleteProfil
 }
