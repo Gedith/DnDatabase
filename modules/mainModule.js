@@ -95,7 +95,7 @@ const changePass = (oldPass, newPass, newPassAgain) => {
                 bcrypt.compare(oldPass, sqlResult[0].Heslo, (err, compare) => {
                     if(err) throw err
                     if(compare == true){
-                        bcrypt.hash(pass, saltRounds, (err, hash) => {
+                        bcrypt.hash(newPass, saltRounds, (err, hash) => {
                             resolve(sql.query("UPDATE uzivatele SET Heslo = '"+hash+"' WHERE UzivateleID = '"+UzivateleID+"'"), (err, res) => {
                                 if(err) throw err
                             })
