@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    <h1>Detaily světa <%= worldName %></h1>
+    <a href="/home">Domů</a><hr>
+
+
+    <h3>Bestiář</h3>
+    <% if(typeOfUser == "PJ") { %>
+        <a href="/world/animal/add">Vytvořit nové zvíře</a><br>
+    <% } %>
+
+    <% for (let i = 0; i < animals.length; i++) { %>
+       <% if(animals[i].visible == 1 || typeOfUser == 'PJ') { %> 
+            <a href="/world/animal/details/<%= animals[i].ID %>"><%= animals[i].name %></a>
+            <% if(typeOfUser == "PJ") { %>
+                <% if(animals[i].visible == 0) { %>
+                    <a href="/world/animal/visibility/<%= animals[i].ID %>"> - zviditelnit pro všechny</a>
+                <% } %>
+                <% if(animals[i].visible == 1) { %>
+                    <a href="/world/animal/visibility/<%= animals[i].ID %>"> - skrýt pro ostatní</a>
+                <% } %>
+            <% } %>
+        <% } %>
+    <% } %>
+        <hr>
+    <h3>Herbář</h3>
+    <% if(typeOfUser == "PJ") { %>
+        <a href="/world/flower/add">Vytvořit novou květinu</a><br>
+    <% } %>
+
+    <% for (let i = 0; i < flowers.length; i++) { %>
+        <% if(flowers[i].visible == 1 || typeOfUser == 'PJ') { %> 
+             <a href="/world/flower/details/<%= flowers[i].ID %>"><%= flowers[i].name %></a>
+             <% if(typeOfUser == "PJ") { %>
+                <% if(flowers[i].visible == 0) { %>
+                    <a href="/world/flower/visibility/<%= flowers[i].ID %>"> - zviditelnit pro všechny</a><br>
+                <% } else if(flowers[i].visible == 1) { %>
+                    <a href="/world/flower/visibility/<%= flowers[i].ID %>"> - skrýt pro ostatní</a><br>
+                <% } %>
+            <% } %>
+         <% } %>
+     <% } %>
+            <hr>
+    <h3>NPCs</h3>
+    <% if(typeOfUser == "PJ") { %>
+        <a href="/world/npc/add">Vytvořit nové npc</a><br>
+    <% } %>
+
+    <% for (let i = 0; i < npcs.length; i++) { %>
+        <% if(npcs[i].visible == 1 || typeOfUser == 'PJ') { %> 
+             <a href="/world/npc/details/<%= npcs[i].ID %>"><%= npcs[i].name %></a>
+             <% if(typeOfUser == "PJ") { %>
+                <% if(npcs[i].visible == 0) { %>
+                    <a href="/world/npc/visibility/<%= npcs[i].ID %>"> - zviditelnit pro všechny</a>
+                <% } else if(npcs[i].visible == 1) { %>
+                    <a href="/world/npc/visibility/<%= npcs[i].ID %>"> - skrýt pro ostatní</a>
+                <% } %>
+            <% } %>
+         <% } %>
+     <% } %>
+            <hr>
+    <a href="/world/maps"><h3>Mapy</h3></a>
+    
+    <%- include('./partials/main_footer.ejs') %>    
+</body>
+</html>

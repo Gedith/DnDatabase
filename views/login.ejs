@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    <h1>Přihlašování</h1>
+
+    <form action="/" method="POST">
+        <input type="radio" name="typeOfUser" id="PJ" checked="checked" value="PJ" required>
+        <label for="PJ">Pán jeskyně</label>
+        <input type="radio" name="typeOfUser" id="Player" value="Player" required>
+        <label for="Player">Hráč</label>
+        <label for="name">Jméno</label>
+        <input type="text" id="name" name="name" required>
+        <label for="pass">Heslo</label>
+        <input type="password" id="pass" name="password" required>
+        <button>Odeslat</button>
+    </form>
+
+    <nav>
+        <a href="/register">Registrovat se</a>
+    </nav>
+
+    <%- include('./partials/main_footer.ejs') %>
+</body>
+</html>

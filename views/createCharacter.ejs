@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    
+    <h1>Vytvoř si novou kampaň</h1>
+    <a href="javascript:history.back()">Zpět</a><hr>
+
+    <form action="/character/create" method="POST">
+        <label for="name">Jméno postavy</label>
+        <input type="text" id="name" name="name" required><br>
+        <label for="class">Třída</label>
+        <input type="text" id="class" name="class" required><br>
+        <label for="race">Rasa</label>
+        <input type="text" id="race" name="race" required><br>
+        <label for="str">Síla</label>
+        <input type="number" id="str" name="str" required><br>
+        <label for="dex">Obratnost</label>
+        <input type="number" id="dex" name="dex" required><br>
+        <label for="int">Inteligence</label>
+        <input type="number" id="int" name="int" required><br>
+        <label for="cha">Charisma</label>
+        <input type="number" id="cha" name="cha" required><br>
+        <label for="con">Postřeh</label>
+        <input type="number" id="con" name="con" required><br>
+        <label for="wis">Moudrost</label>
+        <input type="number" id="wis" name="wis" required><br>
+        <button>Odeslat</button>
+    </form>
+
+    <%- include('./partials/main_footer.ejs') %>
+</body>
+</html>

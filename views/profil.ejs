@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    
+    <h1>Profil</h1>
+    <a href="/home">Domů</a><hr>
+    <p><%= userName %> - <a href="/profil/changeName">Změnit</a></p>
+    <a href="/profil/changePass">Změnit heslo</a><br>
+    <a href="/profil/deleteProfil">Odstranit profil</a>
+
+    <%- include('./partials/main_footer.ejs') %>
+</body>
+</html>

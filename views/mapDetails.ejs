@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    <a href="/world/maps">Všechny mapy</a><hr>
+    <img src="/<%= userID %>/<%= map.name %>" alt="<%= map.name %>">
+    <hr>
+    <h3>Města</h3>
+    <% if(typeOfUser == "PJ") { %>
+        <a href="/world/maps/town/add">Přidat město</a>
+    <% } %>
+    <% for (let i = 0; i < towns.length; i++) { %>
+       <a href="/world/maps/town/details/<%= towns[i].ID %>"><%= towns[i].name %></a> 
+    <% } %>
+
+    <% if(typeOfUser == "PJ") { %>
+        <a href="/world/maps/del/<%= map.name %>">Smazat mapu</a>
+    <% } %>
+
+    <%- include('./partials/main_footer.ejs') %>
+</body>
+</html>

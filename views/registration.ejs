@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    <h1>Registrace</h1>
+
+    <form action="/register" method="POST">
+        <label for="name">Jméno</label>
+        <input type="text" id="name" name="name" required>
+        <label for="password">Heslo</label>
+        <input type="password" id="password" name="pass" required>
+        <label for="password2">Heslo znovu</label>
+        <input type="password" id="password2" name="pass2" required>
+        <button>Odeslat</button>
+    </form>
+
+    <%- include('./partials/main_footer.ejs') %>
+</body>
+</html>

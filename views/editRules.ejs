@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    
+    <h1>Úprava pravidel</h1>
+    <a href="javascript:history.back()">Zpět</a><hr>
+
+    <form action="/campaign/rules/edit" method="POST">
+        <label for="text">Text</label>
+        <input type="textarea" id="text" name="text" required>
+        <button>Odeslat</button>
+    </form>
+
+    <%- include('./partials/main_footer.ejs') %>
+</body>
+</html>

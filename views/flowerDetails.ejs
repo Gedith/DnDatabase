@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    <h1>Details of flower - <%= flower.name %></h1>
+    <a href="javascript:history.back()">Zpět</a>
+
+    <p>Název: <%= flower.name %></p>
+    <p>Místo výskytu: <%= flower.location %></p>
+    <p>Vlastnosti: <%= flower.properties %></p>
+
+    <% if(typeOfUser == "PJ") { %>
+        <a href="/world/flower/del/<%= flower.ID %>">Smazat květinu</a>
+    <% } %>
+
+    <%- include('./partials/main_footer.ejs') %>
+</body>
+</html>

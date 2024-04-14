@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    
+    <h1>Vytvoř nové zvíře do svého světa</h1>
+    <a href="javascript:history.back()">Zpět</a><hr>
+
+    <form action="/world/animal/add" method="POST">
+        <label for="name">Název zvířete</label>
+        <input type="text" id="name" name="name" required>
+        <label for="species">Druh</label>
+        <input type="text" id="species" name="species" required>
+        <label for="description">Popis</label>
+        <input type="textarea" id="description" name="description" required>
+        <button>Odeslat</button>
+    </form>
+
+    <%- include('./partials/main_footer.ejs') %>
+</body>
+</html>

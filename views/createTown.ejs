@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+<body>
+    
+    <h1>Přidej město</h1>
+    <a href="javascript:history.back()">Zpět</a><hr>
+
+    <form action="/world/maps/town/add" method="POST">
+        <label for="name">Název města</label>
+        <input type="text" id="name" name="name" required>
+        <label for="location">Poloha</label>
+        <input type="text" id="location" name="location" required>
+        <label for="description">Popis</label>
+        <input type="textarea" id="description" name="description" required>
+        <button>Odeslat</button>
+    </form>
+
+    <%- include('./partials/main_footer.ejs') %>
+</body>
+</html>
