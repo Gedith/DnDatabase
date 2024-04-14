@@ -7,11 +7,11 @@
     <a href="javascript:history.back()">Zpět</a><hr>
 
     <form action="/world/maps/add" method="POST" enctype="multipart/form-data">
-        <input type="text" name="user" id="user" value="<%= userID %>" style="display: none;">
+        <input type="text" name="user" id="user" value="<%= userID %>" style="display: none;" required>
         <label for="name">Název mapy</label>
-        <input type="text" id="name" name="name">
+        <input type="text" id="name" name="name" required>
         <label for="map">mapa</label>
-        <input type="file" id="map" name="map">
+        <input type="file" id="map" name="map" required>
         <button>Odeslat</button>
     </form>
 

@@ -8,15 +8,15 @@
 
     <form action="/world/npc/add" method="POST">
         <label for="name">Jméno NPC</label>
-        <input type="text" id="name" name="name">
+        <input type="text" id="name" name="name" required>
         <label for="location">Lokace</label>
-        <input type="text" id="location" name="location">
+        <input type="text" id="location" name="location" required>
         <label for="class">Třída</label>
-        <input type="text" id="class" name="class">
+        <input type="text" id="class" name="class" required>
         <label for="race">Rasa</label>
-        <input type="text" id="race" name="race">
+        <input type="text" id="race" name="race" required>
         <label for="description">Popis</label>
-        <input type="textarea" id="description" name="description">
+        <input type="textarea" id="description" name="description" required>
         <button>Odeslat</button>
     </form>
 

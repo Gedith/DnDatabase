@@ -8,11 +8,11 @@
 
     <form action="/world/maps/town/add" method="POST">
         <label for="name">Název města</label>
-        <input type="text" id="name" name="name">
+        <input type="text" id="name" name="name" required>
         <label for="location">Poloha</label>
-        <input type="text" id="location" name="location">
+        <input type="text" id="location" name="location" required>
         <label for="description">Popis</label>
-        <input type="textarea" id="description" name="description">
+        <input type="textarea" id="description" name="description" required>
         <button>Odeslat</button>
     </form>
 

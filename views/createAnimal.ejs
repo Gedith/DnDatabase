@@ -8,11 +8,11 @@
 
     <form action="/world/animal/add" method="POST">
         <label for="name">Název zvířete</label>
-        <input type="text" id="name" name="name">
+        <input type="text" id="name" name="name" required>
         <label for="species">Druh</label>
-        <input type="text" id="species" name="species">
+        <input type="text" id="species" name="species" required>
         <label for="description">Popis</label>
-        <input type="textarea" id="description" name="description">
+        <input type="textarea" id="description" name="description" required>
         <button>Odeslat</button>
     </form>
 

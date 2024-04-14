@@ -8,11 +8,11 @@
 
     <form action="/world/flower/add" method="POST">
         <label for="name">Název květiny</label>
-        <input type="text" id="name" name="name">
+        <input type="text" id="name" name="name" required>
         <label for="location">Místo výskytu</label>
-        <input type="text" id="location" name="location">
+        <input type="text" id="location" name="location" required>
         <label for="properties">Vlastnosti</label>
-        <input type="textarea" id="properties" name="properties">
+        <input type="textarea" id="properties" name="properties" required>
         <button>Odeslat</button>
     </form>
 
