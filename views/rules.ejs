@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/main_head.ejs') %>
+
+<body>  
+    <h2>Pravidla</h2>
+    <% if(pravidla) { %>
+        <a href="/campaign/details/<%= pravidla.kampaneID %>">Zpět</a><hr>
+        <a href="/campaign/rules/edit">Upravit pravidla</a>
+        <p><%= pravidla.text %></p>
+    <% } else { %>
+        <a href="javascript:history.back()">Zpět</a><hr>
+        <p>Žádná pravidla tu zatím nejsou</p><br>
+        <a href="/campaign/rules/add">Vytvořit pravidla</a>
+    <% } %>
+
+</body>
+</html>

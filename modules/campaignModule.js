@@ -71,6 +71,37 @@ const getWorlds = (campaignID) => {
   })
 }
 
+const addRules = (pravidla, kampaneID) => {
+  sql.query("INSERT INTO `pravidla`(`Pravidla`, `KampaneID`) VALUES ('"+pravidla+"','"+kampaneID+"')", (err) => {
+      if(err) throw err
+  })
+}
+
+const selectRules = (campaignID) => {
+  return new Promise ((resolve, reject) => {
+    sql.query("SELECT * FROM `pravidla` WHERE Pravidla.KampaneID = "+campaignID, (err, sqlResult) => {
+      if(err) throw err
+      console.log(sqlResult)
+      if(sqlResult.length > 0) {
+        console.log("NEEEEEEEEEEEEEEEEEE")
+        const rules = {
+          pravidlaID: sqlResult[0].PravidlaID,
+          text: sqlResult[0].Pravidla,
+          kampaneID: sqlResult[0].KampaneID
+        }
+        resolve(rules)
+      }
+      reject(pravidla = null)
+    })
+  })
+}
+
+const editRules = (rules, campaignID) => {
+  sql.query("UPDATE `pravidla` SET `Pravidla`='"+rules+"' WHERE Pravidla.KampaneID = "+campaignID, (err) => {
+    if (err) throw err
+  })
+}
+
 module.exports = {
     getAvailablePlayers,
     addPlayerToCampaign,
@@ -78,5 +109,8 @@ module.exports = {
     createCampaign,
     createWorld,
     getWorlds,
-    getCampaignData
+    getCampaignData,
+    addRules,
+    selectRules,
+    editRules
 }

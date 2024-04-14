@@ -281,5 +281,5 @@ module.exports = {
     flowerDel,
     npcDel,
     townDel,
-    mapDel
+    mapDel,
 }

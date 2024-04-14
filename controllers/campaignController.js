@@ -19,7 +19,7 @@ const campaignDetails = (req, res) => {
         .then((characters) => {
             campaignModule.getWorlds(id)
             .then((worlds) => {
-                res.render('campaignDetails', { campaignName, characters, worlds, typeOfUser})
+                res.render('campaignDetails', { campaignName, characters, worlds, typeOfUser, campaignID: id})
             })
         })
     })
@@ -49,6 +49,34 @@ const createWorld = (req, res) => {
     res.redirect('/campaign/details/'+req.session.campaignID)
 }
 
+const indexRules = (req, res) => {
+    campaignModule.selectRules(req.session.campaignID)
+    .then((pravidla) => {
+        res.render('rules', { pravidla })
+    })
+    .catch((pravidla) => {
+        res.render('rules', { pravidla })
+    })
+}
+
+const indexAddRules = (req, res) => {
+    res.render('addRules')
+}
+
+const addRules = (req, res) => {
+    campaignModule.addRules(req.body.text, req.session.campaignID)
+    res.redirect("/campaign/rules/")
+}
+
+const indexEditRules = (req, res) => {
+    res.render('editRules')
+}
+
+const editRules = (req, res) => {
+    campaignModule.editRules(req.body.text, req.session.campaignID)
+    res.redirect("/campaign/rules/")
+}
+
 module.exports = {
     indexCreateCampaign,
     createCampaign,
@@ -56,5 +84,11 @@ module.exports = {
     indexAddPlayer,
     addPlayer,
     indexCreateWorld,
-    createWorld
+    createWorld,
+    addRules,
+    indexRules,
+    indexAddPlayer,
+    indexAddRules,
+    indexEditRules,
+    editRules
 }
