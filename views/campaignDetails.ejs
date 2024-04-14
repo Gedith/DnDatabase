@@ -19,5 +19,7 @@
     <% worlds.forEach(world => { %>
        <a href="/world/details/<%= world.ID %>"><%= world.name %></a> 
     <% }) %>
+
+    <%- include('./partials/main_footer.ejs') %>
 </body>
 </html>
