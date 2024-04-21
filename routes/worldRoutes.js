@@ -8,16 +8,18 @@ const multer  = require('multer')
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        const userID = req.body.user
+        let userID = req.session.userID
+        userID = ''+userID
         if(!fs.existsSync(path.join(__dirname,"..", "maps"))){
             fs.mkdir(path.join(__dirname,"..", "maps"), (err) => {
                 if(err) throw err
             })            
         }
         if(!fs.existsSync(path.join(__dirname,"..", "maps", userID))){
-        fs.mkdir(path.join(__dirname,"..", "maps", userID), (err) => {
-            if(err) throw err
-        })
+            console.log("Hello")
+            fs.mkdir(path.join(__dirname,"..", "maps", userID), (err) => {
+                if(err) throw err
+            })
         }
         cb(null, './maps/'+userID)
     },
