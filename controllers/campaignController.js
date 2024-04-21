@@ -25,6 +25,11 @@ const campaignDetails = (req, res) => {
     })
 }
 
+const campaignDel = (req,res) => {
+    campaignModule.campaignDel(req.session.campaignID)
+    res.redirect("/home")
+}
+
 const indexAddPlayer = (req, res) => {
     campaignModule.getAvailablePlayers(req.session.campaignID)
     .then((data) => {
@@ -90,5 +95,6 @@ module.exports = {
     indexAddPlayer,
     indexAddRules,
     indexEditRules,
-    editRules
+    editRules,
+    campaignDel
 }

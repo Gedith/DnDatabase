@@ -26,4 +26,6 @@ router.get('/campaign/rules/edit', campaignController.indexEditRules)
 
 router.post('/campaign/rules/edit', campaignController.editRules)
 
+router.get('/campaign/del', campaignController.campaignDel)
+
 module.exports = router

@@ -3,7 +3,7 @@
     <%- include('./partials/main_head.ejs') %>
 <body>
     <h1>Details of campaign - <%= campaignName %></h1>
-    <a href="/home">Domů</a><a href="/campaign/rules">Pravidla</a>
+    <a href="/home">Domů</a><a href="/campaign/rules">Pravidla</a><a href="/campaign/del">Smazat kampaň</a>
     <h2>Hráčské postavy</h2>
     <% if(typeOfUser == "PJ") { %>
         <a href="/campaign/addPlayer">Přidat postavu</a><br>
