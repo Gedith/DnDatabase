@@ -81,9 +81,7 @@ const selectRules = (campaignID) => {
   return new Promise ((resolve, reject) => {
     sql.query("SELECT * FROM `pravidla` WHERE Pravidla.KampaneID = "+campaignID, (err, sqlResult) => {
       if(err) throw err
-      console.log(sqlResult)
       if(sqlResult.length > 0) {
-        console.log("NEEEEEEEEEEEEEEEEEE")
         const rules = {
           pravidlaID: sqlResult[0].PravidlaID,
           text: sqlResult[0].Pravidla,

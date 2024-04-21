@@ -16,7 +16,6 @@ const storage = multer.diskStorage({
             })            
         }
         if(!fs.existsSync(path.join(__dirname,"..", "maps", userID))){
-            console.log("Hello")
             fs.mkdir(path.join(__dirname,"..", "maps", userID), (err) => {
                 if(err) throw err
             })

@@ -156,7 +156,6 @@ const npcDel = (req, res) => {
 }
 
 const mapDel = (req,res) => {
-    console.log(req.params.name)
     if(fs.existsSync(path.join(__dirname,"..","maps", ""+req.session.userID, req.params.name))){
         fs.unlink(path.join(__dirname,"..","maps", ""+req.session.userID, req.params.name), (err) => {
             if(err) throw err

@@ -35,7 +35,6 @@ const indexAddPlayer = (req, res) => {
     .then((data) => {
         res.render('addPlayer', { freeCharacters: data })
     }).catch((err) => {
-        //hodit do statusu
         console.log(err)
     })
 }
