@@ -81,9 +81,7 @@ const selectRules = (campaignID) => {
   return new Promise ((resolve, reject) => {
     sql.query("SELECT * FROM `pravidla` WHERE Pravidla.KampaneID = "+campaignID, (err, sqlResult) => {
       if(err) throw err
-      console.log(sqlResult)
       if(sqlResult.length > 0) {
-        console.log("NEEEEEEEEEEEEEEEEEE")
         const rules = {
           pravidlaID: sqlResult[0].PravidlaID,
           text: sqlResult[0].Pravidla,
@@ -102,6 +100,21 @@ const editRules = (rules, campaignID) => {
   })
 }
 
+const campaignDel = (campaignID) => {
+  procedures = ["CALL smazKytky_kampaneID(?)", "CALL smazZivocichy_kampaneID(?)", "CALL smazMesta_kampaneID(?)", "CALL smazMapy_kampaneID(?)", "CALL smazNPC_kampaneID(?)", "CALL smazSvet_kampaneID(?)", "CALL smazPravidla_kampaneID(?)", "CALL oddelHracskouPostavu_kampaneID(?)", "CALL smazKampan_kampaneID(?)"]
+  sql.beginTransaction((err) => {
+    if(err) throw err
+    procedures.forEach((procedure) => {
+      sql.query(procedure, campaignID, (err) => {
+        if(err) throw err
+      })
+    })
+  })
+  sql.commit((err) => {
+    if(err) throw err
+  })
+}
+
 module.exports = {
     getAvailablePlayers,
     addPlayerToCampaign,
@@ -112,5 +125,6 @@ module.exports = {
     getCampaignData,
     addRules,
     selectRules,
-    editRules
+    editRules,
+    campaignDel
 }

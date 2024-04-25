@@ -67,7 +67,6 @@ const createSpell = (req, res) => {
 
 const delSpell = (req, res) => {
     characterModule.delSpell(req.params.id)
-    console.log(req.session.characterID)
     res.redirect('/character/spells/'+req.session.characterID)
 }
 

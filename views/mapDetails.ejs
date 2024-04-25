@@ -9,13 +9,15 @@
     <% if(typeOfUser == "PJ") { %>
         <a href="/world/maps/town/add">Přidat město</a>
     <% } %>
+
+    <% if(typeOfUser == "PJ") { %>
+        <a href="/world/maps/del/<%= map.name %>">Smazat mapu</a><hr>
+    <% } %>
+
     <% for (let i = 0; i < towns.length; i++) { %>
        <a href="/world/maps/town/details/<%= towns[i].ID %>"><%= towns[i].name %></a> 
     <% } %>
 
-    <% if(typeOfUser == "PJ") { %>
-        <a href="/world/maps/del/<%= map.name %>">Smazat mapu</a>
-    <% } %>
 
     <%- include('./partials/main_footer.ejs') %>
 </body>

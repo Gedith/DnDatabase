@@ -25,12 +25,16 @@ const campaignDetails = (req, res) => {
     })
 }
 
+const campaignDel = (req,res) => {
+    campaignModule.campaignDel(req.session.campaignID)
+    res.redirect("/home")
+}
+
 const indexAddPlayer = (req, res) => {
     campaignModule.getAvailablePlayers(req.session.campaignID)
     .then((data) => {
         res.render('addPlayer', { freeCharacters: data })
     }).catch((err) => {
-        //hodit do statusu
         console.log(err)
     })
 }
@@ -90,5 +94,6 @@ module.exports = {
     indexAddPlayer,
     indexAddRules,
     indexEditRules,
-    editRules
+    editRules,
+    campaignDel
 }
